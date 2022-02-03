@@ -2,6 +2,7 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
+[Aa]ssets/fireBase/
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -58,3 +59,5 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+Assets/fireBase/Plugins/Firebase.App.dll
+Assets/fireBase/Plugins/x86_64/FirebaseCppApp-8_6_2.so

@@ -1,1 +1,1 @@
-# InuLudo
+# LudoPrime

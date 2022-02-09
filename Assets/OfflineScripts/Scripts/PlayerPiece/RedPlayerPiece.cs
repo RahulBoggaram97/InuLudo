@@ -31,6 +31,7 @@ public class RedPlayerPiece : PlayerPiece
                 canMove = true;
             }
             MoveSteps(pathsParent.redPathPoints);
+            //GameManager.gm.rolledDice.asMoved = true;
         }
     }
 }

@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/mainGame/LudoBoard.unity
     guid: a94c5050d65359b4c9bc1700aa2a955b
   - enabled: 1
-    path: Assets/Scenes/mainGame/OfflineLudoBoard.unity
-    guid: 5412931d4917e0145b0453333739cd48
+    path: Assets/LudoOffline.unity
+    guid: d3c4c710aa0c68c47b8b6f20706534b3
   m_configObjects: {}

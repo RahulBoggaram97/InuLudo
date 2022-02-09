@@ -68,7 +68,7 @@ public class PlayerPiece : MonoBehaviour
             //GameManager.gm.numOfStepsToMove = 0;
 
             GameManager.gm.RemovePathPoint(previousPathPoint);
-            previousPathPoint.RemovePlayerPiece(this);
+            //previousPathPoint.RemovePlayerPiece(this);
             currentPathPoint = pathPointsToMoveOn_[numberOfStepsAlreadyMoved - 1];
 
             if (currentPathPoint.AddPlayerPiece(this))

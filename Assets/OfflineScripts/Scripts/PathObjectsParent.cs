@@ -6,9 +6,9 @@ public class PathObjectsParent : MonoBehaviour
 {
 
     public PathPoints[] commonPathPoints;
-    public PathPoints[] yellowPathPoints;
-    public PathPoints[] greenPathPoints;
     public PathPoints[] redPathPoints;
+    public PathPoints[] greenPathPoints;
+    public PathPoints[] yellowPathPoints;
     public PathPoints[] bluePathPoints;
     public PathPoints[] BasePoints;
 }

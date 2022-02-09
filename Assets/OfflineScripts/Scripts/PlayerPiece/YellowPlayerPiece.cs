@@ -31,6 +31,7 @@ public class YellowPlayerPiece : PlayerPiece
                 canMove = true;
             }
             MoveSteps(pathsParent.yellowPathPoints);
+            //GameManager.gm.rolledDice.asMoved = true;
         }
     }
 

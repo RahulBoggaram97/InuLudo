@@ -29,9 +29,11 @@ public class GreenPlayerPiece : PlayerPiece
             if (GameManager.gm.rolledDice == greenHomeRollingDice && isReady )
             {
                 canMove = true;
-                MoveSteps(pathsParent.greenPathPoints);
+                //MoveSteps(pathsParent.greenPathPoints);
             }
-            
+            MoveSteps(pathsParent.greenPathPoints);
+            //GameManager.gm.rolledDice.asMoved = true;
+
         }
     }
 }

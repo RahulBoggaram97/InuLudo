@@ -19,6 +19,8 @@ public class RollingDice : MonoBehaviour
     Coroutine moveSteps_Coroutine;
     PlayerPiece outPlayerPiece;
 
+    public bool asMoved;
+
     private void Awake()
     {
         pathParent = FindObjectOfType<PathObjectsParent>();
@@ -61,9 +63,9 @@ public class RollingDice : MonoBehaviour
             {
 
 
-                if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[0]) { outPieces = GameManager.gm.yellowOutPlayers; }
+                if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[2]) { outPieces = GameManager.gm.yellowOutPlayers; }
                 else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[1]) { outPieces = GameManager.gm.greenOutPlayers; }
-                else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[2]) { outPieces = GameManager.gm.redOutPlayers; }
+                else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[0]) { outPieces = GameManager.gm.redOutPlayers; }
                 else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[3]) { outPieces = GameManager.gm.blueOutPlayers; }
 
                 if (outPieces == 0 && numberedGot != 6)
@@ -117,9 +119,9 @@ public class RollingDice : MonoBehaviour
 
     int CheckOutPlayer()
     {
-        if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[0]) { currentplayerpieces = GameManager.gm.yellowPlayerPiece; pathPointToMoveOn_ = pathParent.yellowPathPoints; }
+        if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[2]) { currentplayerpieces = GameManager.gm.yellowPlayerPiece; pathPointToMoveOn_ = pathParent.yellowPathPoints; }
         else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[1]) { currentplayerpieces = GameManager.gm.greenPlayerPiece; pathPointToMoveOn_ = pathParent.greenPathPoints; }
-        else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[2]) { currentplayerpieces = GameManager.gm.redPlayerPiece; pathPointToMoveOn_ = pathParent.redPathPoints; }
+        else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[0]) { currentplayerpieces = GameManager.gm.redPlayerPiece; pathPointToMoveOn_ = pathParent.redPathPoints; }
         else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[3]) { currentplayerpieces = GameManager.gm.bluePlayerPiece; pathPointToMoveOn_ = pathParent.bluePathPoints; }
 
         for (int i = 0; i < currentplayerpieces.Length; i++)
@@ -137,9 +139,9 @@ public class RollingDice : MonoBehaviour
         if (outPieces > 0)
         {
             bool canNotMove = false;
-            if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[0]) { currentplayerpieces = GameManager.gm.yellowPlayerPiece; pathPointToMoveOn_ = pathParent.yellowPathPoints; }
+            if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[2]) { currentplayerpieces = GameManager.gm.yellowPlayerPiece; pathPointToMoveOn_ = pathParent.yellowPathPoints; }
             else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[1]) { currentplayerpieces = GameManager.gm.yellowPlayerPiece; pathPointToMoveOn_ = pathParent.yellowPathPoints; }
-            else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[2]) { currentplayerpieces = GameManager.gm.yellowPlayerPiece; pathPointToMoveOn_ = pathParent.yellowPathPoints; }
+            else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[0]) { currentplayerpieces = GameManager.gm.yellowPlayerPiece; pathPointToMoveOn_ = pathParent.yellowPathPoints; }
             else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[3]) { currentplayerpieces = GameManager.gm.yellowPlayerPiece; pathPointToMoveOn_ = pathParent.yellowPathPoints; }
 
             for (int i = 0; i < currentplayerpieces.Length; i++)
@@ -184,9 +186,9 @@ public class RollingDice : MonoBehaviour
 
     public void MakePlayerReadyToMove(int outPlayer)
     {
-        if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[0]) { outPlayerPiece = GameManager.gm.yellowPlayerPiece[outPlayer]; pathPointToMoveOn_ = pathParent.yellowPathPoints; GameManager.gm.yellowOutPlayers += 1; }
+        if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[2]) { outPlayerPiece = GameManager.gm.yellowPlayerPiece[outPlayer]; pathPointToMoveOn_ = pathParent.yellowPathPoints; GameManager.gm.yellowOutPlayers += 1; }
         else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[1]) { outPlayerPiece = GameManager.gm.greenPlayerPiece[outPlayer]; pathPointToMoveOn_ = pathParent.greenPathPoints; GameManager.gm.greenOutPlayers += 1; }
-        else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[2]) { outPlayerPiece = GameManager.gm.redPlayerPiece[outPlayer]; pathPointToMoveOn_ = pathParent.redPathPoints; GameManager.gm.redOutPlayers += 1; }
+        else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[0]) { outPlayerPiece = GameManager.gm.redPlayerPiece[outPlayer]; pathPointToMoveOn_ = pathParent.redPathPoints; GameManager.gm.redOutPlayers += 1; }
         else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[3]) { outPlayerPiece = GameManager.gm.bluePlayerPiece[outPlayer]; pathPointToMoveOn_ = pathParent.bluePathPoints; GameManager.gm.blueOutPlayers += 1; }
 
         outPlayerPiece.isReady = true;
@@ -205,9 +207,9 @@ public class RollingDice : MonoBehaviour
     }
     IEnumerator MoveSteps_Enum(int movePlayer)
     {
-        if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[0]) { outPlayerPiece = GameManager.gm.yellowPlayerPiece[movePlayer]; pathPointToMoveOn_ = pathParent.yellowPathPoints; }
+        if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[2]) { outPlayerPiece = GameManager.gm.yellowPlayerPiece[movePlayer]; pathPointToMoveOn_ = pathParent.yellowPathPoints; }
         else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[1]) { outPlayerPiece = GameManager.gm.greenPlayerPiece[movePlayer]; pathPointToMoveOn_ = pathParent.greenPathPoints; }
-        else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[2]) { outPlayerPiece = GameManager.gm.redPlayerPiece[movePlayer]; pathPointToMoveOn_ = pathParent.redPathPoints; }
+        else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[0]) { outPlayerPiece = GameManager.gm.redPlayerPiece[movePlayer]; pathPointToMoveOn_ = pathParent.redPathPoints; }
         else if (GameManager.gm.rolledDice == GameManager.gm.manageRollingDice[3]) { outPlayerPiece = GameManager.gm.bluePlayerPiece[movePlayer]; pathPointToMoveOn_ = pathParent.bluePathPoints; }
 
         GameManager.gm.transferDice = false;
@@ -279,3 +281,4 @@ public class RollingDice : MonoBehaviour
         }
     }
 }
+

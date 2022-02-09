@@ -22,6 +22,7 @@ public class BluePlayerPiece : PlayerPiece
                     GameManager.gm.blueOutPlayers += 1;
                     MakePlayerReadyToMove(pathsParent.bluePathPoints);
                     GameManager.gm.numOfStepsToMove = 0;
+                    
                     return;
                 }
             }
@@ -29,8 +30,11 @@ public class BluePlayerPiece : PlayerPiece
             if (GameManager.gm.rolledDice == blueHomeRollingDice && isReady)
             {
                 canMove = true;
+
+
             }
             MoveSteps(pathsParent.bluePathPoints);
+            //GameManager.gm.rolledDice.asMoved = true;
         }
     }
 }

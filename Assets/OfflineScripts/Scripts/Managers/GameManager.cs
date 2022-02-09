@@ -61,9 +61,9 @@ public class GameManager : MonoBehaviour
     public void RollingDiceManager()
     {
         //int nextDice;
-        if(GameManager.gm.transferDice)
+        if(GameManager.gm.transferDice) //&& rolledDice.asMoved == true  
         {
-            if (GameManager.gm.numOfStepsToMove != 6)
+            if (GameManager.gm.numOfStepsToMove != 6 )
             {
                 ShiftDice();
             }

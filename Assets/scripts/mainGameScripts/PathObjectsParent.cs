@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace com.impactionalGames.LudoInu
+namespace com.impactionalGames.LudoPrime
 {
     public class PathObjectsParent : MonoBehaviour
     {

@@ -5,8 +5,9 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using System;
 
-namespace com.impactionalGames.LudoInu
+namespace com.impactionalGames.LudoPrime
 {
     public class lobbyUITemplate : MonoBehaviourPunCallbacks
     {
@@ -22,6 +23,9 @@ namespace com.impactionalGames.LudoInu
         public Text entryFeeText;
 
         public onlineLobbyCreater olC;
+
+
+        public static event Action<int> manageFee;
 
         private void Start()
         {
@@ -54,7 +58,7 @@ namespace com.impactionalGames.LudoInu
         {
             int[] entryFeeArray = { 1, 5, 10, 25, 50, 100 };
 
-            entryFee = entryFeeArray[Random.Range(0, entryFeeArray.Length)];
+            entryFee = entryFeeArray[UnityEngine.Random.Range(0, entryFeeArray.Length)];
 
             prizePool = (3 * entryFee) - ((3 * entryFee) * 0.2f);
 
@@ -76,8 +80,9 @@ namespace com.impactionalGames.LudoInu
         public async Task manageTheFee()
         {
             olC.entryFee = entryFee;
-            await Task.Delay(1000);
+            manageFee?.Invoke(entryFee);
             Debug.Log("fee managed");
+            await Task.Yield();
         }
 
     }

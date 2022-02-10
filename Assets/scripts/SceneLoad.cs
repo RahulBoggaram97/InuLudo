@@ -67,14 +67,4 @@ public class SceneLoad : MonoBehaviour
     {
         SceneManager.LoadScene("GameMenu");
     }
-
-    public void OfflineLudo()
-    {
-        SceneManager.LoadScene("OfflineLudoBoard");
-    }
-
-    public void NewLudoOff()
-    {
-        SceneManager.LoadScene("LudoOffline");
-    }
 }

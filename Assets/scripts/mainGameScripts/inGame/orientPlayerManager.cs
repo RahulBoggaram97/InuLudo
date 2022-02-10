@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 
-namespace com.impactionalGames.LudoInu
+namespace com.impactionalGames.LudoPrime
 {
     public class orientPlayerManager : MonoBehaviour
     {

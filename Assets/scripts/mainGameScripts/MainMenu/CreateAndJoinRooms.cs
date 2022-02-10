@@ -5,14 +5,15 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
-namespace com.impactionalGames.LudoInu
+namespace com.impactionalGames.LudoPrime
 {
 
     public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     {
         string gameVersion = "1";
-
+        [Header("Input Field For Creating Private Room")]
         [SerializeField] private InputField createFeild;
         [SerializeField] private InputField joinFeild;
 
@@ -20,22 +21,25 @@ namespace com.impactionalGames.LudoInu
 
         public string levelToLoad;
 
+        [Header("Panels:")]
         public GameObject loadingPanel;
         public GameObject mainMenuPanel;
-        public GameObject TournamentPanel;
-        public GameObject profilePanel;
+        public GameObject playOnlinePanel;
         public GameObject playWithFriendsMenuPanel;
 
-        public GameObject walletBarPanel;
-        public GameObject settingPanel;
-        public GameObject rulesPanel;
+        
 
+        [Header("debug:")]
         public Text debugText;
         public string roomCode;
 
+        
+
         TypedLobby customLobby = new TypedLobby("customLobby", LobbyType.Default);
 
-        
+
+        [Header("Scenes")]
+        public string walletCanvasUi;
 
         private void Awake()
         {
@@ -47,17 +51,17 @@ namespace com.impactionalGames.LudoInu
         {
             loadingPanel.SetActive(true);
             mainMenuPanel.SetActive(false);
-            TournamentPanel.SetActive(false);
-           
+            playOnlinePanel.SetActive(false);
             playWithFriendsMenuPanel.SetActive(false);
-            walletBarPanel.SetActive(false);
-            settingPanel.SetActive(false);
-            rulesPanel.SetActive(false);
+            
 
             connect();
 
-            DontDestroyOnLoad(walletBarPanel);
+           
+            
         }
+
+       
 
         public void connect()
         {
@@ -86,11 +90,16 @@ namespace com.impactionalGames.LudoInu
             Debug.Log("the server has made or connected, now we can create room");
             loadingPanel.SetActive(false);
             mainMenuPanel.SetActive(true);
-            walletBarPanel.SetActive(true);
-            profilePanel.SetActive(true);
-            profilePanel.SetActive(false);
+            //walletBarPanel.SetActive(true);
+            SceneManager.LoadSceneAsync(walletCanvasUi, LoadSceneMode.Additive);
+            
+
+            
+
 
         }
+
+       
 
 
         //playerwithfriends create room
@@ -101,12 +110,12 @@ namespace com.impactionalGames.LudoInu
 
         public void createRoom()
         {
-            //PhotonNetwork.NickName = playerPermData.getUserName();
+            PhotonNetwork.NickName = playerPermData.getUserName();
             Debug.Log("current lobby is " + PhotonNetwork.CurrentLobby.Name);
 
             roomCode = gernrateRandomRoomCode();
 
-           // PhotonNetwork.NickName = playerPermData.getUserName();
+            PhotonNetwork.NickName = playerPermData.getUserName();
 
             PhotonNetwork.CreateRoom(roomCode);
 
@@ -152,7 +161,7 @@ namespace com.impactionalGames.LudoInu
         //playewithFriends join Room
         public void joinRoom()
         {
-            //PhotonNetwork.NickName = playerPermData.getUserName();
+            PhotonNetwork.NickName = playerPermData.getUserName();
             PhotonNetwork.JoinRoom(joinFeild.text);
         }
 

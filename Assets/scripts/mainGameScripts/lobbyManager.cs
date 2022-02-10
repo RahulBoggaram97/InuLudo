@@ -7,24 +7,30 @@ using Photon.Realtime;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
-namespace com.impactionalGames.LudoInu
+namespace com.impactionalGames.LudoPrime
 {
     //added to the same object as game manager
     public class lobbyManager : MonoBehaviourPunCallbacks, IPunOwnershipCallbacks
     {
         public int totalPlayersCanPlay;
+
+        [Header("Player names in lobby")]
         public Text[] lobbyText;
 
+        [Header("Pieces and dice of particular color")]
         public LudoHomes[] colourPieces;
 
+        [Header("Lobby Panel")]
         public GameObject lobbyPanel;
 
         public Text debugtextLobby;
 
         public Button startButton;
 
+        [Header("Player images in lobby")]
         public GameObject[] playerLobyImageArray;
 
+        [Header("In-Game UI")]
         public GameObject scoreGameObject;
         public GameObject inGameUserNameGameObject;
         

@@ -6,7 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 
 
-namespace com.impactionalGames.LudoInu
+namespace com.impactionalGames.LudoPrime
 {
     public class twoWinners : lobbyUITemplate
     {

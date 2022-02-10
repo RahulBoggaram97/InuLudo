@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine.UI;
 
 
-namespace com.impactionalGames.LudoInu
+namespace com.impactionalGames.LudoPrime
 {
     //contains the score of the palyer
     public class RollinDice : MonoBehaviourPun, IPunObservable
@@ -26,7 +26,6 @@ namespace com.impactionalGames.LudoInu
         public int score = 0;
 
         public Text scoreText;
-        public DiceAudio diceSound;
 
         private void OnMouseDown()
         {
@@ -62,7 +61,7 @@ namespace com.impactionalGames.LudoInu
         {
             if (!this.hasRolled && !this.hasMoved)
             {
-                diceSound.PlaySound();
+
                 await rollDice();
 
 

@@ -6,7 +6,7 @@ using Photon.Realtime;
 using System.Threading.Tasks;
 
 
-namespace com.impactionalGames.LudoInu
+namespace com.impactionalGames.LudoPrime
 {
     public class onlineLobbyCreater : MonoBehaviourPunCallbacks
     {
@@ -90,7 +90,7 @@ namespace com.impactionalGames.LudoInu
 
         public override void OnJoinedLobby()
         {
-            //PhotonNetwork.NickName = playerPermData.getUserName();
+            PhotonNetwork.NickName = playerPermData.getUserName();
             Debug.Log("current lobby is " + PhotonNetwork.CurrentLobby.Name);
 
             joinTheMainGame();

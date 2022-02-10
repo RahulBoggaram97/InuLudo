@@ -2,42 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 
-
-namespace com.impactionalGames.LudoInu
+namespace com.impactionalGames.LudoPrime
 {
 
     public class GameManager : MonoBehaviourPun, IPunObservable
     {
 
-
+        [Header("Completed Players")]
         public int yellowCompletedPlayers = 0;
         public int redCompletedPlayers = 0;
         public int blueCompletedPlayers = 0;
         public int greenCompletedPlayers = 0;
 
+        [Header("Total Players Can Play")]
         public int totalPlayersCanPlay;
 
         int nextDice;
         public static GameManager gm;
         List<PathPoints> playerOnPathPointsList = new List<PathPoints>();
-
+    
+        [Header("Bools to track Dice")]
         public bool canDiceRoll = true;
         public bool transferDice = false;
         public bool selfDice = false;
         public bool CanPlayerMove;
 
+        [Header("Dice List")]
         public List<RollinDice> rollingDiceList;
         public RollinDice rolleddice;
 
+        [Header("Number of steps to move")]
         public int numOfStepsToMove;
+
+        [Header("Scenes")]
+        public string walletCanvasname;
 
 
         private void Start()
         {
             gm = this;
 
+            SceneManager.LoadSceneAsync(walletCanvasname, LoadSceneMode.Additive);
             
         }
 

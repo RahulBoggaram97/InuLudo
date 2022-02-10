@@ -5,7 +5,7 @@ using Photon.Pun;
 using UnityEngine.UI;
 using SimpleJSON;
 
-namespace com.impactionalGames.LudoInu
+namespace com.impactionalGames.LudoPrime
 {
     public class ProfileManager : MonoBehaviour
     {
@@ -15,45 +15,45 @@ namespace com.impactionalGames.LudoInu
         public Text emailId;
       
 
-        //private void Start()
-        //{
-        //    getPlayerName();
+        private void Start()
+        {
+            getPlayerName();
 
-        //    phoneNum.text = playerPermData.getPhoneNumber();
-        //    emailId.text = playerPermData.getEmail();
-        //}
+            phoneNum.text = playerPermData.getPhoneNumber();
+            //emailId.text = playerPermData.getEmail();
+        }
 
 
-        //public void getPlayerName()
-        //{
-        //    string defaultName = string.Empty;
-        //    if (playerNameField != null)
-        //    {
-        //        if (PlayerPrefs.HasKey(playerPermData.USERNAME_PREF_KEY))
-        //        {
-        //            defaultName = PlayerPrefs.GetString(playerPermData.USERNAME_PREF_KEY);
-        //            playerNameField.text = defaultName;
-        //        }
-        //    }
+        public void getPlayerName()
+        {
+            string defaultName = string.Empty;
+            if (playerNameField != null)
+            {
+                if (PlayerPrefs.HasKey(playerPermData.USERNAME_PREF_KEY))
+                {
+                    defaultName = PlayerPrefs.GetString(playerPermData.USERNAME_PREF_KEY);
+                    playerNameField.text = defaultName;
+                }
+            }
 
-        //    PhotonNetwork.NickName = defaultName;
+            PhotonNetwork.NickName = defaultName;
         
 
-        //}
+        }
 
-        //public void setPlayerName()
-        //{
-        //    if (playerNameField.text != string.Empty)
-        //    {
-        //        PhotonNetwork.NickName = playerNameField.text;
-        //        playerPermData.setUserName(playerNameField.text);
-        //    }
-        //    else
-        //    {
+        public void setPlayerName()
+        {
+            if (playerNameField.text != string.Empty)
+            {
+                PhotonNetwork.NickName = playerNameField.text;
+                playerPermData.setUserName(playerNameField.text);
+            }
+            else
+            {
 
-        //        return;
-        //    }
-        //}
+                return;
+            }
+        }
 
         void getUserDataFromRest()
         {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-namespace com.impactionalGames.LudoPrime
+namespace com.impactionalGames.LudoInu
 {
     public class redPlayerPiece : PlayerPiece
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using System.Threading.Tasks;
 
-namespace com.impactionalGames.LudoPrime
+namespace com.impactionalGames.LudoInu
 {
     public class PlayerPiece : MonoBehaviourPun
     {

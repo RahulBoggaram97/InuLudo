@@ -5,7 +5,7 @@ using Photon.Pun;
 using UnityEngine.UI;
 using SimpleJSON;
 
-namespace com.impactionalGames.LudoPrime
+namespace com.impactionalGames.LudoInu
 {
     public class ProfileManager : MonoBehaviour
     {

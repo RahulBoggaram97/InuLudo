@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-namespace com.impactionalGames.LudoPrime
+namespace com.impactionalGames.LudoInu
 {
     public class authManager : MonoBehaviour
     {
@@ -19,6 +19,9 @@ namespace com.impactionalGames.LudoPrime
         public GameObject enterOtpPanel;
         public InputField OTPField;
 
+        [Header("Username Panel")]
+        public GameObject userNamePanel;
+        public InputField userNameField;
       
 
         [Header("For Debugging")]
@@ -62,28 +65,34 @@ namespace com.impactionalGames.LudoPrime
                 case loginState.authenticated:
                     handleOnAuthenticated();
                     break;
+                case loginState.createUser:
+                    handleCreatingUser();
+                    break;
                 case loginState.loggedIn:
                     handleOnLoggedIn();
                     break;
+                
             }
 
             loginStateChanged?.Invoke(state);
 
         }
 
-        
+      
 
         private void handleEnterPhoneNumState()
         {
             enterPhonePanel.SetActive(true);
             enterOtpPanel.SetActive(false);
             countyCodeField.text = "+91";
+            userNamePanel.SetActive(false);
         }
 
         private void handleEnterOtpState()
         {
             enterPhonePanel.SetActive(false);
             enterOtpPanel.SetActive(true);
+            userNamePanel.SetActive(false);
         }
 
         public void handleOnAuthenticated()
@@ -91,7 +100,16 @@ namespace com.impactionalGames.LudoPrime
             debugText.text = "authmangare event has been called";
         }
 
-         public void handleOnLoggedIn()
+       
+
+        private void handleCreatingUser()
+        {
+            enterPhonePanel.SetActive(false);
+            enterOtpPanel.SetActive(false);
+            userNamePanel.SetActive(true);
+        }
+
+        public void handleOnLoggedIn()
         {
             SceneManager.LoadScene(gameMenu);
         }
@@ -103,7 +121,9 @@ namespace com.impactionalGames.LudoPrime
     {
         enterPhoneNum,
         enterOtpNum,
-        authenticated, 
+        authenticated,
+        createUser,
         loggedIn
+        
     }
 }

@@ -6,7 +6,7 @@ using Photon.Realtime;
 using UnityEngine.UI;
 using System.Linq;
 
-namespace com.impactionalGames.LudoPrime
+namespace com.impactionalGames.LudoInu
 {
     public class EndGameManager : MonoBehaviourPunCallbacks
     {

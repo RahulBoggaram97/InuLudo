@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using System.Threading.Tasks;
 using System;
 
-namespace com.impactionalGames.LudoPrime
+namespace com.impactionalGames.LudoInu
 {
     public class lobbyUITemplate : MonoBehaviourPunCallbacks
     {

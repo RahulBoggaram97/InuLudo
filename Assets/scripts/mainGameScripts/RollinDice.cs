@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine.UI;
 
 
-namespace com.impactionalGames.LudoPrime
+namespace com.impactionalGames.LudoInu
 {
     //contains the score of the palyer
     public class RollinDice : MonoBehaviourPun, IPunObservable

@@ -5,7 +5,7 @@ using System.Linq;
 using Photon.Pun;
 using System;
 
-namespace com.impactionalGames.LudoPrime
+namespace com.impactionalGames.LudoInu
 {
     public class WinnerDecider : MonoBehaviour
     {

@@ -7,7 +7,7 @@ using Photon.Realtime;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
-namespace com.impactionalGames.LudoPrime
+namespace com.impactionalGames.LudoInu
 {
 
     public class CreateAndJoinRooms : MonoBehaviourPunCallbacks

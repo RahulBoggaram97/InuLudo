@@ -6,7 +6,7 @@ using Photon.Realtime;
 using System.Threading.Tasks;
 
 
-namespace com.impactionalGames.LudoPrime
+namespace com.impactionalGames.LudoInu
 {
     public class onlineLobbyCreater : MonoBehaviourPunCallbacks
     {

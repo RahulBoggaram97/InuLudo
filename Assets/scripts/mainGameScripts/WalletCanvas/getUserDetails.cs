@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 using SimpleJSON;
 
 
-namespace com.impactionalGames.LudoPrime
+namespace com.impactionalGames.LudoInu
 {
     public class getUserDetails : MonoBehaviour
     {

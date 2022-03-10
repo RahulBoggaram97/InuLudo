@@ -31,7 +31,7 @@ namespace com.impactionalGames.LudoInu
 
         private void Update()
         {
-            updateTimer();
+            //updateTimer();
         }
 
         void updateTimer()
@@ -101,13 +101,18 @@ namespace com.impactionalGames.LudoInu
         {
 
             PhotonNetwork.JoinRandomOrCreateRoom();
-           
-            
-
-            
+                  
         }
 
-       
+        public override void OnJoinedRoom()
+        {
+            //meaning that you have created or joined room;
+
+            PhotonNetwork.LoadLevel("LudoBoard");
+
+        }
+
+
 
 
 

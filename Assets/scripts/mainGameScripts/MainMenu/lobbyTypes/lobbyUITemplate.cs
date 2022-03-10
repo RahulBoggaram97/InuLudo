@@ -11,6 +11,8 @@ namespace com.impactionalGames.LudoInu
 {
     public class lobbyUITemplate : MonoBehaviourPunCallbacks
     {
+        public string levelToLoad;
+
         public GameObject gO;
 
         public float Timer = 60;
@@ -85,5 +87,7 @@ namespace com.impactionalGames.LudoInu
             await Task.Yield();
         }
 
+
+       
     }
 }

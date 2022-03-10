@@ -25,6 +25,8 @@ namespace com.impactionalGames.LudoInu
             PhotonNetwork.JoinLobby(oneVoneLobby1);
             Debug.Log("the joined lobby is : " + PhotonNetwork.CurrentLobby);
 
+            
+
         }
         public async void joinOneVone5()
         {

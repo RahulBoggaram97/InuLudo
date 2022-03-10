@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 namespace com.impactionalGames.LudoInu
 {
@@ -11,6 +12,8 @@ namespace com.impactionalGames.LudoInu
 
         [Header("Photon Vars")]
         public string gameVersion = "1";
+        public string levleToLoadAfterJoiningTheGame;
+
 
         private void Awake()
         {
@@ -31,11 +34,12 @@ namespace com.impactionalGames.LudoInu
 
         public void connect()
         {
-
+            Debug.Log("the connect method got called from photon connection manager");
             if (PhotonNetwork.IsConnected)
             {
 
-                PhotonNetwork.JoinRandomRoom();
+                Debug.Log(PhotonNetwork.CurrentLobby.Name + " is the lobby and  the room is " + PhotonNetwork.CurrentRoom.Name);
+                mainMenuManager.instance.updateMainMenuState(mainMenuState.initial);
             }
             else
             {
@@ -54,6 +58,10 @@ namespace com.impactionalGames.LudoInu
             mainMenuManager.instance.updateMainMenuState(mainMenuState.initial);
 
         }
+
+
+     
+
 
     }
 }

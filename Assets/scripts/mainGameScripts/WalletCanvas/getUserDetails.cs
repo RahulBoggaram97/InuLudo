@@ -30,7 +30,7 @@ namespace com.impactionalGames.LudoInu
         {
             string phone = playerPermData.getPhoneNumber();
 
-            string uri = "https://ludogame-backend.herokuapp.com/api/getUserDetails/" + playerPermData.getPhoneNumber() ;
+            string uri = "https://ludo-inu.herokuapp.com/api/getUserDetails/" + playerPermData.getPhoneNumber() ;
 
             Debug.Log(uri);
             using (UnityWebRequest request = UnityWebRequest.Get(uri))
@@ -46,19 +46,24 @@ namespace com.impactionalGames.LudoInu
 
                     JSONNode node = JSON.Parse(request.downloadHandler.text);
 
-                    //[{"UserId":"1643254696575",
-                    //"Phone":"7894561230",
-                    //"Joined":"2022-01-27T03:38:17.000Z",
-                    //"Name":"prime1643254696575",
-                    //"ProfilePic":"undefined",
-                    //"Wallet":0,
-                    //"Points":100,
-                    //"Won":0,
-                    //"Lose":0,
-                    //"Drawn":0,
-                    //"Total":0,
-                    //"LastGame":0,
-                    //"MatchPoints":null}]
+                    //[{ "UserId":1646904850877,
+                    //        "Phone":"+919876543210",
+                    //        "Joined":"2022-03-10T09:34:11.000Z",
+                    //        "Name":"prime1646904850877",
+                    //        "ProfilePic":"undefined",
+                    //        "Wallet":0,
+                    //        "ReferralCode":null,
+                    //        "Referrer":null,
+                    //        "Diamonds":null,
+                    //        "Talktime":null,
+                    //        "Type":"",
+                    //        "Points":100,
+                    //        "Won":0,
+                    //        "Lose":0,
+                    //        "Drawn":0,
+                    //        "Total":0,
+                    //        "LastGame":0,
+                    //        "MatchPoints":null}]
 
                     Debug.Log(node[0]["UserId"].ToString());
 

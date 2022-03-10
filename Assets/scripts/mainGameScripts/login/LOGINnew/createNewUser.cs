@@ -12,15 +12,15 @@ namespace com.impactionalGames.LudoInu
 
         public Text debugText;
 
-        private void Awake()
-        {
-            authManager.loginStateChanged += HandleOnAuthenticate;
-        }
+        //private void Awake()
+        //{
+        //    authManager.loginStateChanged += HandleOnAuthenticate;
+        //}
 
-        private void OnDestroy()
-        {
-            authManager.loginStateChanged -= HandleOnAuthenticate;
-        }
+        //private void OnDestroy()
+        //{
+        //    authManager.loginStateChanged -= HandleOnAuthenticate;
+        //}
 
         private void HandleOnAuthenticate(loginState state)
         {
@@ -38,21 +38,24 @@ namespace com.impactionalGames.LudoInu
         {
           
 
-            string url = "https://ludogame-backend.herokuapp.com/api/createUser";
+            string url = "https://ludo-inu.herokuapp.com/api/createUser";
             WWWForm form = new WWWForm();
-            form.AddField("Phone", playerPermData.getPhoneNumber());
+            form.AddField("Phone", "+919876543210");
 
             using (UnityWebRequest request = UnityWebRequest.Post(url, form))
             {
                 yield return request.SendWebRequest();
                 if(request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
                 {
-                    debugText.text = request.error;
+                    //debugText.text = request.error;
+                    Debug.Log(request.error);
+                    Debug.Log(request.downloadHandler.text); 
                 }
                 else
                 {
-                    debugText.text = request.error;
-                    authManager.instance.updateLoginState(loginState.loggedIn);
+                    //debugText.text = request.error;
+                    //authManager.instance.updateLoginState(loginState.loggedIn);
+                    Debug.Log(request.downloadHandler.text);
                 }
             }
         }

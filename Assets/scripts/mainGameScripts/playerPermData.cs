@@ -11,6 +11,7 @@ namespace com.impactionalGames.LudoInu
         public const string EMAIL_ID_PREF_KEY = "firebaseGoolgeAuthenticatedID";
         public const string USERNAME_PREF_KEY = "userName";
         public static string MONEY_PREF_KEY = "money";
+        public static string DIAMOND_PREF_KEY = "diamonds";
         public static string PHONE_NO_PREF_KEY = "phoneNumber";
 
         public const string WON_MATCHES_PREF_KEY = "won";
@@ -18,6 +19,21 @@ namespace com.impactionalGames.LudoInu
         public const string DRAWN_MATCHES_PREF_KEY = "drawn";
         public const string TOTAL_MATCHES_PREF_KEY = "total";
 
+
+        public const string REFER_CODE_PREF_KEY = "referCode";
+        public const string REFERED_BY_CODE_PREF_KEY = "referedBy";
+
+
+        //setting prefkeys
+        public const string LANGUAGE_PREF_KEY = "language";
+        public const string ENGLISH_KEY = "english";
+        public const string HINDI_KEY = "hindi";
+
+
+
+        public const string SOUNDS_PREF_KEY = "sounds";
+        public const string MUSIC_PREF_KEY = "music";
+        public const string VIBRATION_PREF_KEY = "vibration";
 
 
         //EMAIL
@@ -63,6 +79,22 @@ namespace com.impactionalGames.LudoInu
         {
             return PlayerPrefs.GetInt(MONEY_PREF_KEY);  
         }
+
+        //DIAMONDS
+        public static void setDiamonds(string value)
+        {
+            PlayerPrefs.SetString(DIAMOND_PREF_KEY, value);
+        }
+
+        public static string getDiamonds()
+        {
+            return PlayerPrefs.GetString(DIAMOND_PREF_KEY);
+        }
+
+
+
+
+
 
         //PHONE NUM
         public static void setPhoneNumber(string value)
@@ -118,6 +150,74 @@ namespace com.impactionalGames.LudoInu
         public static string getTotalMatches()
         {
             return PlayerPrefs.GetString(TOTAL_MATCHES_PREF_KEY);
+        }
+
+
+
+        //LANGUAGE
+        public static void setLanguage(string value)
+        {
+            PlayerPrefs.SetString(LANGUAGE_PREF_KEY, value);
+        }
+
+        public static string getLanguage()
+        {
+            return PlayerPrefs.GetString(LANGUAGE_PREF_KEY);
+        }
+
+        //SOUNDS
+        public static void setSoundsOnOrOff(bool value)
+        {
+            PlayerPrefs.SetString(SOUNDS_PREF_KEY, value.ToString());
+        }
+
+        public static bool getSoundsOnOrOff()
+        {
+            return System.Convert.ToBoolean(PlayerPrefs.GetString(SOUNDS_PREF_KEY));
+        }
+
+        //MUSIC
+        public static void setMusicOnOrOff(bool value)
+        {
+            PlayerPrefs.SetString(MUSIC_PREF_KEY, value.ToString());
+        }
+
+        public static bool getMusicOnOrOff()
+        {
+            return System.Convert.ToBoolean(PlayerPrefs.GetString(MUSIC_PREF_KEY));
+        }
+
+        //SOUNDS
+        public static void setVibrationOnOrOff(bool value)
+        {
+            PlayerPrefs.SetString(VIBRATION_PREF_KEY, value.ToString());
+        }
+
+        public static bool getVibrationOnOrOff()
+        {
+            return System.Convert.ToBoolean(PlayerPrefs.GetString(VIBRATION_PREF_KEY));
+        }
+
+        //REFER CODE
+        public static void setReferCode(string value)
+        {
+            PlayerPrefs.SetString(REFER_CODE_PREF_KEY, value);
+        }
+
+        public static string getReferCode()
+        {
+            return PlayerPrefs.GetString(REFER_CODE_PREF_KEY);
+        }
+
+        //REFERED BY
+        public static void setReferdBy(string value)
+        {
+            PlayerPrefs.SetString(REFERED_BY_CODE_PREF_KEY, value);
+        }
+
+        public static string getReferedBy()
+        {
+            return PlayerPrefs.GetString(REFERED_BY_CODE_PREF_KEY);
         }
     }
 }

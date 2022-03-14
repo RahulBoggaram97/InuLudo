@@ -45,7 +45,7 @@ namespace com.impactionalGames.LudoInu
         {
             gm = this;
 
-            SceneManager.LoadSceneAsync(walletCanvasname, LoadSceneMode.Additive);
+           
             
         }
 

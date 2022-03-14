@@ -11,16 +11,49 @@ namespace com.impactionalGames.LudoInu
     {
         public InputField playerNameField;
 
+        [Header("other scripts")]
+    
+        public getUserDetails getuseDetObject;
+
+
+        [Header("Text elements")]
         public Text phoneNum;
-        public Text emailId;
-      
+        public Text walletCoinsText;
+        public Text diamondsText;
+        public Text totalmatchesText;
+        public Text wonMatchesText;
+        public Text loseMatchesText;
+        public Text refrelCodeText;
+
 
         private void Start()
         {
             getPlayerName();
 
-            phoneNum.text = playerPermData.getPhoneNumber();
-            //emailId.text = playerPermData.getEmail();
+            getuseDetObject.getUserDet();
+
+            Debug.Log("profile start called");
+
+           
+
+            
+
+            getPlayerName();
+
+            //phoneNum.text = playerPermData.getPhoneNumber();
+
+            walletCoinsText.text = playerPermData.getMoney().ToString();
+
+            diamondsText.text = playerPermData.getDiamonds();
+
+            //totalmatchesText.text = playerPermData.getTotalMatches();
+
+            wonMatchesText.text = playerPermData.getWonMatches();
+
+            //loseMatchesText.text = playerPermData.getLoseMatchesr();
+
+            //refrelCodeText.text = "Refrel Code: " + playerPermData.getReferCode();
+
         }
 
 

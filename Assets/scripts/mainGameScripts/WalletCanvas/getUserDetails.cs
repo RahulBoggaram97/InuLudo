@@ -10,10 +10,12 @@ namespace com.impactionalGames.LudoInu
     public class getUserDetails : MonoBehaviour
     {
 
-        public webVeiwManager webMan;
+        
 
         private void Start()
         {
+            playerPermData.setPhoneNumber("+919876543210");
+
             getUserDet();
 
             
@@ -67,8 +69,12 @@ namespace com.impactionalGames.LudoInu
 
                     Debug.Log(node[0]["UserId"].ToString());
 
+                    playerPermData.setUserName(node[0]["Name"].ToString());
+
                    
                     playerPermData.setMoney(int.Parse(node[0]["Wallet"].ToString()));
+
+                    playerPermData.setDiamonds(node[0]["Diamonds"].ToString());
 
                     playerPermData.setWonMatches(node[0]["Won"].ToString());
 
@@ -78,7 +84,7 @@ namespace com.impactionalGames.LudoInu
 
                     playerPermData.setTotalMatches(node[0]["Total"].ToString());
 
-                    webMan.status.text = "get user details got called    " + playerPermData.getMoney();
+                    //webMan.status.text = "get user details got called    " + playerPermData.getMoney();
 
                 }
             }

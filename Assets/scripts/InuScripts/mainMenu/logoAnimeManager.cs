@@ -14,6 +14,7 @@ namespace com.impactionalGames.LudoInu
         private void Awake()
         {
             mainMenuManager.onMenuStateChanged += HandleMainMenuStateChanged;
+            
         }
 
         private void HandleMainMenuStateChanged(mainMenuState state)

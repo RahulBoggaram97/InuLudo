@@ -3,21 +3,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-namespace com.impactionalGames.LudoPrime
+namespace com.impactionalGames.LudoInu
 {
+    public enum walletState
+    {
+        intial,
+        profile,
+        walletPanel,
+        settings,
+        leaderBoard,
+        gift,
+        spin
+
+    }
 
     public class walletManager : MonoBehaviour
     {
+        public GameObject walletCanvas;
+
+
+        [Header("Buttons")]
+        public Button settingButton;
+        public Button leaderBoardButton;
+        public Button giftButton;
+        public Button spinButton;
+        public Button referAndEarnButton;
+
 
         [Header("Panles")]
         public GameObject profilePanel;
         public GameObject walletPanel;
-        public GameObject addMoneyPanel;
         public GameObject settingsPanel;
-        public GameObject rulesPanel;
+        public GameObject leaderBoardPanel;
+        public GameObject giftPanel;
+        public GameObject spinPanel;
+      
 
-        public GameObject debugPanel;
+       
 
         
        
@@ -28,13 +52,48 @@ namespace com.impactionalGames.LudoPrime
 
         private void Awake()
         {
+            if(instance == null)
             instance = this;
+
+
+
+            SceneManager.sceneLoaded += onSceneLoaded;
+
             
+            
+            
+        }
+
+        private void onSceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            mainMenuManager.onMenuStateChanged += HandleMenuStateChanged;
+        }
+
+        private void HandleMenuStateChanged(mainMenuState state)
+        {
+           if(state != mainMenuState.initial)
+            {
+                settingButton.gameObject.SetActive(false);
+                leaderBoardButton.gameObject.SetActive(false);
+                giftButton.gameObject.SetActive(false);
+                spinButton.gameObject.SetActive(false);
+                referAndEarnButton.gameObject.SetActive(false);
+            }
+            else
+            {
+                settingButton.gameObject.SetActive(true);
+                leaderBoardButton.gameObject.SetActive(true);
+                giftButton.gameObject.SetActive(true);
+                spinButton.gameObject.SetActive(true);
+                referAndEarnButton.gameObject.SetActive(true);
+
+            }
         }
 
         private void Start()
         {
             updateWalletState(walletState.intial);
+            
         }
 
         private void Update()
@@ -63,15 +122,11 @@ namespace com.impactionalGames.LudoPrime
                 case walletState.walletPanel:
                     handleWalletPanelState();
                     break;
-                case walletState.addMoney:
-                    handleAddMoneyState();
-                    break;
+                
                 case walletState.settings:
                     handleSettingsState();
                     break;
-                case walletState.rules:
-                    handleRulesState();
-                    break;
+               
                 
             }
 
@@ -84,9 +139,9 @@ namespace com.impactionalGames.LudoPrime
         {
             profilePanel.SetActive(false);
             walletPanel.SetActive(false);
-            addMoneyPanel.SetActive(false);
+            
             settingsPanel.SetActive(false);
-            rulesPanel.SetActive(false);
+            
 
 
 
@@ -96,59 +151,49 @@ namespace com.impactionalGames.LudoPrime
         {
             profilePanel.SetActive(true);
             walletPanel.SetActive(false);
-            addMoneyPanel.SetActive(false);
+           
             settingsPanel.SetActive(false);
-            rulesPanel.SetActive(false);
+            
         }
         private void handleWalletPanelState()
         {
             profilePanel.SetActive(false);
             walletPanel.SetActive(true);
-            addMoneyPanel.SetActive(false);
+           
             settingsPanel.SetActive(false);
-            rulesPanel.SetActive(false);
+           
 
         }
         private void handleAddMoneyState()
         {
             profilePanel.SetActive(false);
             walletPanel.SetActive(false);
-            addMoneyPanel.SetActive(true);
+           
             settingsPanel.SetActive(false);
-            rulesPanel.SetActive(false);
+           
 
         }
         private void handleSettingsState()
         {
             profilePanel.SetActive(false);
             walletPanel.SetActive(false);
-            addMoneyPanel.SetActive(false);
+           
             settingsPanel.SetActive(true);
-            rulesPanel.SetActive(false);
+           
 
         }
         private void handleRulesState()
         {
             profilePanel.SetActive(false);
             walletPanel.SetActive(false);
-            addMoneyPanel.SetActive(false);
+            
             settingsPanel.SetActive(false);
-            rulesPanel.SetActive(true);
+          
 
         }
 
 
-        public void toggleDebugPanel()
-        {
-            if (debugPanel.activeSelf == true)
-            {
-                debugPanel.SetActive(false);
-            }
-            else
-            {
-                debugPanel.SetActive(true);
-            }
-        }
+      
        
         public void IntialOnClick()
         {
@@ -166,32 +211,17 @@ namespace com.impactionalGames.LudoPrime
             walletManager.instance.updateWalletState(walletState.walletPanel);
         }
 
-        public void AddMoneyOnClick()
-        {
-            walletManager.instance.updateWalletState(walletState.addMoney);
-        }
+       
 
         public void SettingsOnClick()
         {
             walletManager.instance.updateWalletState(walletState.settings);
         }
 
-        public void RulesOnClick()
-        {
-            walletManager.instance.updateWalletState(walletState.rules);
-        }
+      
 
     }
 
 
-    public enum walletState
-    {
-        intial,
-        profile,
-        walletPanel,
-        addMoney,
-        settings,
-        rules
-   
-    }
+    
 }

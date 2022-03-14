@@ -12,6 +12,9 @@ namespace com.impactionalGames.LudoInu
         //singleton
         public static OfflineManager instance;
 
+
+        
+
         private void Awake()
         {
             if(instance == null)
@@ -30,8 +33,11 @@ namespace com.impactionalGames.LudoInu
         {
             if (Input.GetKeyDown(KeyCode.Escape) && !gameStarted)
             {
+                if (gametype != typeOfGame.selctionMenu)
 
-                selectTypeOfGame(typeOfGame.selctionMenu);
+                    selectTypeOfGame(typeOfGame.selctionMenu);
+
+                else SceneManager.UnloadScene(selfSceneName);
 
             }
         }
@@ -41,7 +47,12 @@ namespace com.impactionalGames.LudoInu
         public GameObject selctionMenu;
         public GameObject twoPlayerColorSelctionMenu;
         public bool gameStarted = false;
+
+
+        [Header("Scene Names")]
         public string offlineBotSceneName;
+        public string GameMenuSceneName;
+        public string selfSceneName;
 
         public static event Action<typeOfGame> onTypeOfGameSelected;
         public typeOfGame gametype;

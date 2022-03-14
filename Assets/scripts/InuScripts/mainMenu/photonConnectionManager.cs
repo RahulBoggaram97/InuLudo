@@ -37,7 +37,7 @@ namespace com.impactionalGames.LudoInu
             Debug.Log("the connect method got called from photon connection manager");
             if (PhotonNetwork.IsConnected)
             {
-
+                if(PhotonNetwork.CurrentLobby != null && PhotonNetwork.CurrentRoom != null)
                 Debug.Log(PhotonNetwork.CurrentLobby.Name + " is the lobby and  the room is " + PhotonNetwork.CurrentRoom.Name);
                 mainMenuManager.instance.updateMainMenuState(mainMenuState.initial);
             }

@@ -38,7 +38,7 @@ namespace com.impactionalGames.LudoInu
 
         private void Update()
         {
-            updateTimer();
+            //updateTimer();
         }
 
         void updateTimer()

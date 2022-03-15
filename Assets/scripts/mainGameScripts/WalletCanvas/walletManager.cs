@@ -11,12 +11,8 @@ namespace com.impactionalGames.LudoInu
     {
         intial,
         profile,
-        walletPanel,
-        settings,
-        leaderBoard,
-        gift,
-        spin
-
+        editProfile,
+        settings
     }
 
     public class walletManager : MonoBehaviour
@@ -34,11 +30,8 @@ namespace com.impactionalGames.LudoInu
 
         [Header("Panles")]
         public GameObject profilePanel;
-        public GameObject walletPanel;
+        public GameObject editProfilePanel;
         public GameObject settingsPanel;
-        public GameObject leaderBoardPanel;
-        public GameObject giftPanel;
-        public GameObject spinPanel;
       
 
        
@@ -119,82 +112,52 @@ namespace com.impactionalGames.LudoInu
                 case walletState.profile:
                     handleProfileState();
                     break;
-                case walletState.walletPanel:
-                    handleWalletPanelState();
+                case walletState.editProfile:
+                   handleEditProfileState();
                     break;
-                
                 case walletState.settings:
                     handleSettingsState();
                     break;
-               
                 
             }
 
             onWalletStateChanged?.Invoke(State);
         }
 
-       
+
 
         private void handleIntialState()
         {
-            profilePanel.SetActive(false);
-            walletPanel.SetActive(false);
-            
+            profilePanel.SetActive(false);    
+            editProfilePanel.SetActive(false);
             settingsPanel.SetActive(false);
-            
-
-
 
         }
 
         private void handleProfileState()
         {
             profilePanel.SetActive(true);
-            walletPanel.SetActive(false);
-           
+            editProfilePanel.SetActive(false);
             settingsPanel.SetActive(false);
             
         }
-        private void handleWalletPanelState()
+ 
+        private void handleEditProfileState()
         {
             profilePanel.SetActive(false);
-            walletPanel.SetActive(true);
-           
+            editProfilePanel.SetActive(true);
             settingsPanel.SetActive(false);
-           
-
-        }
-        private void handleAddMoneyState()
-        {
-            profilePanel.SetActive(false);
-            walletPanel.SetActive(false);
-           
-            settingsPanel.SetActive(false);
-           
 
         }
         private void handleSettingsState()
         {
             profilePanel.SetActive(false);
-            walletPanel.SetActive(false);
-           
+            editProfilePanel.SetActive(false);
             settingsPanel.SetActive(true);
            
 
         }
-        private void handleRulesState()
-        {
-            profilePanel.SetActive(false);
-            walletPanel.SetActive(false);
-            
-            settingsPanel.SetActive(false);
-          
-
-        }
-
-
-      
-       
+  
         public void IntialOnClick()
         {
            walletManager.instance.updateWalletState(walletState.intial);
@@ -206,22 +169,21 @@ namespace com.impactionalGames.LudoInu
             Debug.Log("profile button called");
         }
 
-        public void WalletPanelOnClick()
-        {
-            walletManager.instance.updateWalletState(walletState.walletPanel);
-        }
 
-       
+        public void EditProflieOnClick()
+        {
+            walletManager.instance.updateWalletState(walletState.editProfile);
+        }
 
         public void SettingsOnClick()
         {
             walletManager.instance.updateWalletState(walletState.settings);
         }
 
-      
+
 
     }
 
 
-    
+
 }

@@ -67,12 +67,22 @@ namespace com.impactionalGames.LudoInu
                     //        "LastGame":0,
                     //        "MatchPoints":null}]
 
-                    Debug.Log(node[0]["UserId"].ToString());
+                    Debug.Log(node[0]["Name"].ToString());
 
-                    playerPermData.setUserName(node[0]["Name"].ToString());
+                    string username = node[0]["Name"].ToString();
 
-                   
+                    playerPermData.setUserName(username.Substring(1, username.Length - 2));
+                    Debug.Log(playerPermData.getUserName());
+
+                    string imageurl = node[0]["ProfilePic"].ToString();
+
+                    //removing the invert commas for better use in the end;
+                    playerPermData.setProfilePicUrl(imageurl.Substring(1, imageurl.Length - 2));
+
+
                     playerPermData.setMoney(int.Parse(node[0]["Wallet"].ToString()));
+
+                    playerPermData.setReferCode(node[0]["ReferralCode"].ToString());
 
                     playerPermData.setDiamonds(node[0]["Diamonds"].ToString());
 
@@ -93,9 +103,11 @@ namespace com.impactionalGames.LudoInu
 
         IEnumerator updateUser_Coroutine()
         {
-            Debug.Log("loding");
+            Debug.Log(playerPermData.getPhoneNumber());
+            Debug.Log(playerPermData.getUserName());
+            Debug.Log("updating username");
 
-            string url = "https://ludogame-backend.herokuapp.com/api/updateUser";
+            string url = "https://ludo-inu.herokuapp.com/api/updateUser";
             WWWForm form = new WWWForm();
             form.AddField("Phone", playerPermData.getPhoneNumber());
             form.AddField("Name", playerPermData.getUserName());
@@ -106,6 +118,7 @@ namespace com.impactionalGames.LudoInu
                 if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
                 {
                     Debug.Log(request.error);
+                    Debug.Log(request.downloadHandler.text);
                 }
                 else
                 {

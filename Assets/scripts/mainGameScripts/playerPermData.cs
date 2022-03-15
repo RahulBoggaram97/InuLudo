@@ -13,6 +13,7 @@ namespace com.impactionalGames.LudoInu
         public static string MONEY_PREF_KEY = "money";
         public static string DIAMOND_PREF_KEY = "diamonds";
         public static string PHONE_NO_PREF_KEY = "phoneNumber";
+        public static string PROFILE_PIC_URL_PREF_KEY = "profilePicUrl";
 
         public const string WON_MATCHES_PREF_KEY = "won";
         public const string LOSE_MATCHES_PREF_KEY = "lose";
@@ -89,6 +90,18 @@ namespace com.impactionalGames.LudoInu
         public static string getDiamonds()
         {
             return PlayerPrefs.GetString(DIAMOND_PREF_KEY);
+        }
+
+
+        //PROFILE PIC
+        public static void setProfilePicUrl(string value)
+        {
+            PlayerPrefs.SetString(PROFILE_PIC_URL_PREF_KEY, value);
+        }
+
+        public static string getProfilePicUrl()
+        {
+            return PlayerPrefs.GetString(PROFILE_PIC_URL_PREF_KEY);
         }
 
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 using SimpleJSON;
+using UnityEngine.Networking;
 
 namespace com.impactionalGames.LudoInu
 {
@@ -14,6 +15,7 @@ namespace com.impactionalGames.LudoInu
         [Header("other scripts")]
     
         public getUserDetails getuseDetObject;
+        public uploadprofilPicture profileUploader;
 
 
         [Header("Text elements")]
@@ -25,6 +27,9 @@ namespace com.impactionalGames.LudoInu
         public Text loseMatchesText;
         public Text refrelCodeText;
 
+        [Header("profilePic")]
+        public Image profilePic;
+
 
         private void Start()
         {
@@ -34,9 +39,14 @@ namespace com.impactionalGames.LudoInu
 
             Debug.Log("profile start called");
 
-           
 
-            
+
+            StartCoroutine(DownloadImage(playerPermData.getProfilePicUrl()));
+
+            Debug.Log(playerPermData.getProfilePicUrl());
+
+
+
 
             getPlayerName();
 
@@ -46,7 +56,7 @@ namespace com.impactionalGames.LudoInu
 
             diamondsText.text = playerPermData.getDiamonds();
 
-            //totalmatchesText.text = playerPermData.getTotalMatches();
+            totalmatchesText.text = playerPermData.getTotalMatches();
 
             wonMatchesText.text = playerPermData.getWonMatches();
 
@@ -88,10 +98,42 @@ namespace com.impactionalGames.LudoInu
             }
         }
 
-        void getUserDataFromRest()
+
+        public IEnumerator DownloadImage(string downloadUrl)
         {
+            Debug.Log("Downloading image");
+
+            Debug.Log(downloadUrl);
+
+            Texture2D downloadedTexture = null;
+
+            UnityWebRequest request = UnityWebRequestTexture.GetTexture(downloadUrl);
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.Log("cant connect oof");
+                Debug.Log(request.error);
+            }
+            else
+            {
+                downloadedTexture = ((DownloadHandlerTexture)request.downloadHandler).texture;
+                Debug.Log("image downladed");
+            }
+
+            if (downloadedTexture != null)
+                profilePic.sprite = Sprite.Create(downloadedTexture, new Rect(0f, 0f, downloadedTexture.width, downloadedTexture.height), new Vector2(0.5f, 0.5f), 100f);
+            else Debug.Log("texuture is null");
+
 
         }
+
+        public void uploadPhoto()
+        {
+            profileUploader.imagePicker();
+        }
+
+
 
     }
 }

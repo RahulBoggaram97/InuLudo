@@ -13,7 +13,8 @@ namespace com.impactionalGames.LudoInu
         online,
         withFriends,
         offline, 
-        computerbot
+        computerbot, 
+        themes
     }
 
     public class mainMenuManager : MonoBehaviour
@@ -34,6 +35,7 @@ namespace com.impactionalGames.LudoInu
         public GameObject mainMenuPanel;
         public GameObject OnlinePanel;
         public GameObject WithFriendsPanel;
+        public GameObject themePanel;
 
 
 
@@ -94,6 +96,9 @@ namespace com.impactionalGames.LudoInu
                 case mainMenuState.computerbot:
                     handleBotOfflineState();
                     break;
+                case mainMenuState.themes:
+                    handleThemeState();
+                    break;
             }
 
             onMenuStateChanged?.Invoke(state);
@@ -111,6 +116,8 @@ namespace com.impactionalGames.LudoInu
             mainMenuPanel.SetActive(false);
             OnlinePanel.SetActive(false);
             WithFriendsPanel.SetActive(false);
+
+            themePanel.SetActive(false);
         }
 
         private void handleIntialState()
@@ -123,6 +130,8 @@ namespace com.impactionalGames.LudoInu
             mainMenuPanel.SetActive(true);
             OnlinePanel.SetActive(false);
             WithFriendsPanel.SetActive(false);
+
+            themePanel.SetActive(false);
         }
 
         private void handleOnlineState()
@@ -135,7 +144,9 @@ namespace com.impactionalGames.LudoInu
             mainMenuPanel.SetActive(false);
             OnlinePanel.SetActive(true);
             WithFriendsPanel.SetActive(false);
-            
+
+            themePanel.SetActive(false);
+
         }
 
         private void handleWithFriendsState()
@@ -149,7 +160,9 @@ namespace com.impactionalGames.LudoInu
             mainMenuPanel.SetActive(false);
             OnlinePanel.SetActive(false);
             WithFriendsPanel.SetActive(true);
-            
+
+            themePanel.SetActive(false);
+
         }
 
         private void handleOfflineState()
@@ -159,13 +172,31 @@ namespace com.impactionalGames.LudoInu
             _camera.SetActive(false);
             eventSystem.SetActive(false);
 
+            themePanel.SetActive(false);
+
         }
 
 
         private void handleBotOfflineState()
         {
             SceneManager.LoadScene(botOfflineSceneName);
-            
+
+            themePanel.SetActive(false);
+
+        }
+
+        private void handleThemeState()
+        {
+            MainMenuCanvas.SetActive(true);
+            _camera.SetActive(true);
+            eventSystem.SetActive(true);
+
+            loadingPanel.SetActive(false);
+            mainMenuPanel.SetActive(false);
+            OnlinePanel.SetActive(true);
+            WithFriendsPanel.SetActive(false);
+
+            themePanel.SetActive(true);
         }
 
         public void LoadingOnClick()
@@ -196,6 +227,11 @@ namespace com.impactionalGames.LudoInu
         public void BotOfflineOnClick()
         {
             mainMenuManager.instance.updateMainMenuState(mainMenuState.computerbot);
+        }
+
+        public void ThemeOnClick()
+        {
+            mainMenuManager.instance.updateMainMenuState(mainMenuState.themes);
         }
 
 

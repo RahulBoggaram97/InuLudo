@@ -12,7 +12,8 @@ namespace com.impactionalGames.LudoInu
         intial,
         profile,
         editProfile,
-        settings
+        settings, 
+        spin
     }
 
     public class walletManager : MonoBehaviour
@@ -32,6 +33,7 @@ namespace com.impactionalGames.LudoInu
         public GameObject profilePanel;
         public GameObject editProfilePanel;
         public GameObject settingsPanel;
+        public GameObject spinPanel;
       
 
        
@@ -118,6 +120,9 @@ namespace com.impactionalGames.LudoInu
                 case walletState.settings:
                     handleSettingsState();
                     break;
+                case walletState.spin:
+                    handleSpinState();
+                    break;
                 
             }
 
@@ -131,6 +136,7 @@ namespace com.impactionalGames.LudoInu
             profilePanel.SetActive(false);    
             editProfilePanel.SetActive(false);
             settingsPanel.SetActive(false);
+            spinPanel.SetActive(false);
 
         }
 
@@ -139,7 +145,8 @@ namespace com.impactionalGames.LudoInu
             profilePanel.SetActive(true);
             editProfilePanel.SetActive(false);
             settingsPanel.SetActive(false);
-            
+            spinPanel.SetActive(false);
+
         }
  
         private void handleEditProfileState()
@@ -147,6 +154,7 @@ namespace com.impactionalGames.LudoInu
             profilePanel.SetActive(false);
             editProfilePanel.SetActive(true);
             settingsPanel.SetActive(false);
+            spinPanel.SetActive(false);
 
         }
         private void handleSettingsState()
@@ -154,7 +162,16 @@ namespace com.impactionalGames.LudoInu
             profilePanel.SetActive(false);
             editProfilePanel.SetActive(false);
             settingsPanel.SetActive(true);
-           
+            spinPanel.SetActive(false);
+
+
+        }
+        private void handleSpinState()
+        {
+            profilePanel.SetActive(false);
+            editProfilePanel.SetActive(false);
+            settingsPanel.SetActive(false);
+            spinPanel.SetActive(true);
 
         }
   
@@ -178,6 +195,11 @@ namespace com.impactionalGames.LudoInu
         public void SettingsOnClick()
         {
             walletManager.instance.updateWalletState(walletState.settings);
+        }
+
+        public void SpinOnClick()
+        {
+            walletManager.instance.updateWalletState(walletState.spin);
         }
 
 

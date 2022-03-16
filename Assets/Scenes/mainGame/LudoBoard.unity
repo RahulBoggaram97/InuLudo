@@ -2429,6 +2429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 378471043}
   - component: {fileID: 378471042}
+  - component: {fileID: 378471044}
   m_Layer: 0
   m_Name: orientPlayerManager
   m_TagString: Untagged
@@ -2494,6 +2495,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &378471044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378471041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cfcf6ac6d7519042b0e439c3dea6417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &390985760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3401,6 +3414,7 @@ GameObject:
   - component: {fileID: 495100656}
   - component: {fileID: 495100658}
   - component: {fileID: 495100657}
+  - component: {fileID: 495100659}
   m_Layer: 0
   m_Name: GamManager
   m_TagString: Untagged
@@ -3507,6 +3521,22 @@ MonoBehaviour:
   - {fileID: 5896767291236668022}
   scoreGameObject: {fileID: 1229297927}
   inGameUserNameGameObject: {fileID: 1477692413}
+--- !u!114 &495100659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495100654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe9d05fc9ca17c49ab43a0edb6d6ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundImages:
+  - {fileID: 1484398857}
+  - {fileID: 1208396147273136806}
+  - {fileID: 821320759}
 --- !u!1001 &504335861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11496,6 +11526,7 @@ MonoBehaviour:
   winDec: {fileID: 1707781026}
   transact: {fileID: 1707781027}
   uiHandler: {fileID: 1707781028}
+  sendMatchdet: {fileID: 378471044}
 --- !u!114 &1707781026
 MonoBehaviour:
   m_ObjectHideFlags: 0

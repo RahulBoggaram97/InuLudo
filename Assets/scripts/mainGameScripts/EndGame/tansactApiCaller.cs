@@ -13,7 +13,7 @@ namespace com.impactionalGames.LudoInu
         {
             Debug.Log("loding");
 
-            string url = "https://ludogame-backend.herokuapp.com/api/addTransactionHistory";
+            string url = "https://ludo-inu.herokuapp.com/api/addTransactionHistory";
             WWWForm form = new WWWForm();
             form.AddField("Phone", playerPermData.getPhoneNumber());
             form.AddField("amount", amount);

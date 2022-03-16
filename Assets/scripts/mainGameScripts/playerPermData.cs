@@ -37,6 +37,10 @@ namespace com.impactionalGames.LudoInu
         public const string VIBRATION_PREF_KEY = "vibration";
 
 
+        //themes
+        public const string THEME_PATH_PREF_KEY = "themeImagePath";
+
+
         //EMAIL
         public static void setEmail(string value)
         {
@@ -231,6 +235,20 @@ namespace com.impactionalGames.LudoInu
         public static string getReferedBy()
         {
             return PlayerPrefs.GetString(REFERED_BY_CODE_PREF_KEY);
+        }
+
+
+
+
+        //THEME PATH
+        public static void setThemePath(string value)
+        {
+            PlayerPrefs.SetString(THEME_PATH_PREF_KEY, value);
+        }
+
+        public static string getThemePath()
+        {
+            return PlayerPrefs.GetString(THEME_PATH_PREF_KEY);
         }
     }
 }

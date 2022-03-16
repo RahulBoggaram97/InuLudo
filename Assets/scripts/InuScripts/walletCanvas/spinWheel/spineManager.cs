@@ -28,19 +28,13 @@ namespace com.impactionalGames.LudoInu
         public GameObject pickerWheelPanel;
         public GameObject timeToSpinWheelPanel;
 
-
-
-
-
-
-
-
-
-
-
+        [Header("Text")]
         public Text nextTimeToSpinText;
         public Text wonCoinText;
 
+
+        [Header("Other Scripts")]
+        public getLastSpinApi spinApis;
 
         private void Start()
         {
@@ -104,6 +98,8 @@ namespace com.impactionalGames.LudoInu
 
                 wonCoinText.text = wheelPiece.Amount.ToString();
                 updateWheelState(spinState.timeCountDown);
+
+                spinApis.addCoinsFromWheel(wheelPiece.Amount.ToString());
             });
 
 
@@ -111,6 +107,7 @@ namespace com.impactionalGames.LudoInu
 
             OnWheelSpun();
 
+            
             
 
         }

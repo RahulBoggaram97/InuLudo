@@ -13,7 +13,8 @@ namespace com.impactionalGames.LudoInu
         profile,
         editProfile,
         settings, 
-        spin
+        spin, 
+        ranking
     }
 
     public class walletManager : MonoBehaviour
@@ -34,6 +35,7 @@ namespace com.impactionalGames.LudoInu
         public GameObject editProfilePanel;
         public GameObject settingsPanel;
         public GameObject spinPanel;
+        public GameObject rankingPanel;
       
 
        
@@ -123,6 +125,9 @@ namespace com.impactionalGames.LudoInu
                 case walletState.spin:
                     handleSpinState();
                     break;
+                case walletState.ranking:
+                    handleRankingState();
+                    break;
                 
             }
 
@@ -137,6 +142,7 @@ namespace com.impactionalGames.LudoInu
             editProfilePanel.SetActive(false);
             settingsPanel.SetActive(false);
             spinPanel.SetActive(false);
+            rankingPanel.SetActive(false);
 
         }
 
@@ -146,6 +152,7 @@ namespace com.impactionalGames.LudoInu
             editProfilePanel.SetActive(false);
             settingsPanel.SetActive(false);
             spinPanel.SetActive(false);
+            rankingPanel.SetActive(false);
 
         }
  
@@ -155,6 +162,7 @@ namespace com.impactionalGames.LudoInu
             editProfilePanel.SetActive(true);
             settingsPanel.SetActive(false);
             spinPanel.SetActive(false);
+            rankingPanel.SetActive(false);
 
         }
         private void handleSettingsState()
@@ -163,6 +171,7 @@ namespace com.impactionalGames.LudoInu
             editProfilePanel.SetActive(false);
             settingsPanel.SetActive(true);
             spinPanel.SetActive(false);
+            rankingPanel.SetActive(false);
 
 
         }
@@ -172,7 +181,17 @@ namespace com.impactionalGames.LudoInu
             editProfilePanel.SetActive(false);
             settingsPanel.SetActive(false);
             spinPanel.SetActive(true);
+            rankingPanel.SetActive(false);
 
+        }
+
+        private void handleRankingState()
+        {
+            profilePanel.SetActive(false);
+            editProfilePanel.SetActive(false);
+            settingsPanel.SetActive(false);
+            spinPanel.SetActive(false);
+            rankingPanel.SetActive(true);
         }
   
         public void IntialOnClick()
@@ -202,6 +221,10 @@ namespace com.impactionalGames.LudoInu
             walletManager.instance.updateWalletState(walletState.spin);
         }
 
+        public void RankingOnClick()
+        {
+            walletManager.instance.updateWalletState(walletState.ranking);
+        }
 
 
     }

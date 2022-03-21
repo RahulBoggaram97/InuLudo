@@ -10,17 +10,22 @@ namespace com.impactionalGames.LudoInu
         public const string LOCAL_ID_PREF_KEY = "firebaseAuthenticatedLocalID";
         public const string EMAIL_ID_PREF_KEY = "firebaseGoolgeAuthenticatedID";
         public const string USERNAME_PREF_KEY = "userName";
-        public static string MONEY_PREF_KEY = "money";
-        public static string DIAMOND_PREF_KEY = "diamonds";
         public static string PHONE_NO_PREF_KEY = "phoneNumber";
         public static string PROFILE_PIC_URL_PREF_KEY = "profilePicUrl";
 
+        //buyable
+        public static string MONEY_PREF_KEY = "money";
+        public static string DIAMOND_PREF_KEY = "diamonds";
+        public static string TALKTIME_PREF_KEY = "talktime";
+        public static string TYPE_OF_USER_PREF_KEY = "type";
+
+        //tourney stats
         public const string WON_MATCHES_PREF_KEY = "won";
         public const string LOSE_MATCHES_PREF_KEY = "lose";
         public const string DRAWN_MATCHES_PREF_KEY = "drawn";
         public const string TOTAL_MATCHES_PREF_KEY = "total";
 
-
+        //refer
         public const string REFER_CODE_PREF_KEY = "referCode";
         public const string REFERED_BY_CODE_PREF_KEY = "referedBy";
 
@@ -74,6 +79,21 @@ namespace com.impactionalGames.LudoInu
             return PlayerPrefs.GetString(USERNAME_PREF_KEY);
         }
 
+        //PROFILE PIC
+        public static void setProfilePicUrl(string value)
+        {
+            PlayerPrefs.SetString(PROFILE_PIC_URL_PREF_KEY, value);
+        }
+
+        public static string getProfilePicUrl()
+        {
+            return PlayerPrefs.GetString(PROFILE_PIC_URL_PREF_KEY);
+        }
+
+
+
+
+
         //MONEY
         public static void setMoney(int value)
         {
@@ -82,7 +102,7 @@ namespace com.impactionalGames.LudoInu
 
         public static int getMoney()
         {
-            return PlayerPrefs.GetInt(MONEY_PREF_KEY);  
+            return PlayerPrefs.GetInt(MONEY_PREF_KEY);
         }
 
         //DIAMONDS
@@ -97,19 +117,27 @@ namespace com.impactionalGames.LudoInu
         }
 
 
-        //PROFILE PIC
-        public static void setProfilePicUrl(string value)
+        //TALKTIME
+        public static void setTalktime(string value)
         {
-            PlayerPrefs.SetString(PROFILE_PIC_URL_PREF_KEY, value);
+            PlayerPrefs.SetString(TALKTIME_PREF_KEY, value);
         }
 
-        public static string getProfilePicUrl()
+        public static string getTalktime()
         {
-            return PlayerPrefs.GetString(PROFILE_PIC_URL_PREF_KEY);
+            return PlayerPrefs.GetString(TALKTIME_PREF_KEY);
         }
 
+        //TYPE
+        public static void setTypeOfUser(string value)
+        {
+            PlayerPrefs.SetString(TYPE_OF_USER_PREF_KEY, value);
+        }
 
-
+        public static string getTypeOfUser()
+        {
+            return PlayerPrefs.GetString(TYPE_OF_USER_PREF_KEY);
+        }
 
 
 

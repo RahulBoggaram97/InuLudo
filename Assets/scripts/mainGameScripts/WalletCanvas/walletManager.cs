@@ -14,7 +14,8 @@ namespace com.impactionalGames.LudoInu
         editProfile,
         settings, 
         spin, 
-        ranking
+        ranking, 
+        store
     }
 
     public class walletManager : MonoBehaviour
@@ -36,12 +37,12 @@ namespace com.impactionalGames.LudoInu
         public GameObject settingsPanel;
         public GameObject spinPanel;
         public GameObject rankingPanel;
-      
+        public GameObject storePanel;
 
-       
+        [Header("Currency text lists")]
+        public List<Text> coinTextList = new List<Text>();
+        public List<Text> diamondTextList = new List<Text>();
 
-        
-       
 
 
         public static walletManager instance;
@@ -59,6 +60,12 @@ namespace com.impactionalGames.LudoInu
             
             
             
+        }
+
+        private void OnDestroy()
+        {
+            SceneManager.sceneLoaded -= onSceneLoaded;
+            mainMenuManager.onMenuStateChanged -= HandleMenuStateChanged;
         }
 
         private void onSceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -90,6 +97,15 @@ namespace com.impactionalGames.LudoInu
         private void Start()
         {
             updateWalletState(walletState.intial);
+
+            foreach(Text item in coinTextList)
+            {
+                item.text = playerPermData.getMoney().ToString();
+            }
+            foreach(Text item in diamondTextList)
+            {
+                item.text = playerPermData.getDiamonds();
+            }
             
         }
 
@@ -128,13 +144,16 @@ namespace com.impactionalGames.LudoInu
                 case walletState.ranking:
                     handleRankingState();
                     break;
+                case walletState.store:
+                    handleStoreState();
+                    break;
                 
             }
 
             onWalletStateChanged?.Invoke(State);
         }
 
-
+       
 
         private void handleIntialState()
         {
@@ -143,6 +162,7 @@ namespace com.impactionalGames.LudoInu
             settingsPanel.SetActive(false);
             spinPanel.SetActive(false);
             rankingPanel.SetActive(false);
+            storePanel.SetActive(false);
 
         }
 
@@ -153,6 +173,7 @@ namespace com.impactionalGames.LudoInu
             settingsPanel.SetActive(false);
             spinPanel.SetActive(false);
             rankingPanel.SetActive(false);
+            storePanel.SetActive(false);
 
         }
  
@@ -163,6 +184,7 @@ namespace com.impactionalGames.LudoInu
             settingsPanel.SetActive(false);
             spinPanel.SetActive(false);
             rankingPanel.SetActive(false);
+            storePanel.SetActive(false);
 
         }
         private void handleSettingsState()
@@ -172,6 +194,7 @@ namespace com.impactionalGames.LudoInu
             settingsPanel.SetActive(true);
             spinPanel.SetActive(false);
             rankingPanel.SetActive(false);
+            storePanel.SetActive(false);
 
 
         }
@@ -182,6 +205,7 @@ namespace com.impactionalGames.LudoInu
             settingsPanel.SetActive(false);
             spinPanel.SetActive(true);
             rankingPanel.SetActive(false);
+            storePanel.SetActive(false);
 
         }
 
@@ -191,9 +215,22 @@ namespace com.impactionalGames.LudoInu
             editProfilePanel.SetActive(false);
             settingsPanel.SetActive(false);
             spinPanel.SetActive(false);
-            rankingPanel.SetActive(true);
+            rankingPanel.SetActive(true); 
+            storePanel.SetActive(false);
+
+            rankingPanel.GetComponent<getLeaderBoradApi>().getLeaderBoard();
         }
-  
+
+        private void handleStoreState()
+        {
+            profilePanel.SetActive(false);
+            editProfilePanel.SetActive(false);
+            settingsPanel.SetActive(false);
+            spinPanel.SetActive(false);
+            rankingPanel.SetActive(false);
+            storePanel.SetActive(true);
+        }
+
         public void IntialOnClick()
         {
            walletManager.instance.updateWalletState(walletState.intial);
@@ -226,6 +263,10 @@ namespace com.impactionalGames.LudoInu
             walletManager.instance.updateWalletState(walletState.ranking);
         }
 
+        public void StoreOnClick()
+        {
+            walletManager.instance.updateWalletState(walletState.store);
+        }
 
     }
 

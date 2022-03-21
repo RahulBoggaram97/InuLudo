@@ -48,26 +48,30 @@ namespace com.impactionalGames.LudoInu
 
                     JSONNode node = JSON.Parse(request.downloadHandler.text);
 
-                    //[{ "UserId":1646904850877,
-                    //        "Phone":"+919876543210",
-                    //        "Joined":"2022-03-10T09:34:11.000Z",
-                    //        "Name":"prime1646904850877",
-                    //        "ProfilePic":"undefined",
-                    //        "Wallet":0,
-                    //        "ReferralCode":null,
-                    //        "Referrer":null,
-                    //        "Diamonds":null,
-                    //        "Talktime":null,
-                    //        "Type":"",
-                    //        "Points":100,
-                    //        "Won":0,
-                    //        "Lose":0,
-                    //        "Drawn":0,
-                    //        "Total":0,
-                    //        "LastGame":0,
-                    //        "MatchPoints":null}]
+                    //{ "UserId":1646904850877,
+                    //"Phone":"+919876543210",
+                    //"Joined":"2022-03-10T09:34:11.000Z",
+                    //"Name":"sdfsdfsdv",
+                    //"ProfilePic":"https://ludoinu.s3.ap-south-1.amazonaws.com/919876543210.jpeg",
+                    //"Wallet":0,
+                    //"ReferralCode":"A46G12Q",
+                    //"Referrer":null,
+                    //"Diamonds":0,
+                    //"Talktime":"0",
+                    //"Type":"Normal",
+                    //"Coins":350,
+                    //"Points":100,
+                    //"Won":0,
+                    //"Lose":0,
+                    //"Drawn":0,
+                    //"Total":0,
+                    //"LastGame":0,
+                    //"LastSpinTime":"Mon Mar 21 2022 00:00:00 GMT+0000 (Coordinated Universal Time)"}
 
                     Debug.Log(node[0]["Name"].ToString());
+
+
+
 
                     string username = node[0]["Name"].ToString();
 
@@ -76,15 +80,29 @@ namespace com.impactionalGames.LudoInu
 
                     string imageurl = node[0]["ProfilePic"].ToString();
 
+
+
                     //removing the invert commas for better use in the end;
                     playerPermData.setProfilePicUrl(imageurl.Substring(1, imageurl.Length - 2));
 
 
-                    playerPermData.setMoney(int.Parse(node[0]["Wallet"].ToString()));
+
+
+                    playerPermData.setDiamonds(node[0]["Diamonds"].ToString());
+
+                    playerPermData.setTalktime(node[0]["Talktime"].ToString());
+
+                    playerPermData.setMoney(int.Parse(node[0]["Coins"].ToString()));
+
+
+
+
+
 
                     playerPermData.setReferCode(node[0]["ReferralCode"].ToString());
 
-                    playerPermData.setDiamonds(node[0]["Diamonds"].ToString());
+                  
+
 
                     playerPermData.setWonMatches(node[0]["Won"].ToString());
 

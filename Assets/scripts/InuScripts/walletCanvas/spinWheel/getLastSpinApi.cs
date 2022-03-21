@@ -7,6 +7,9 @@ namespace com.impactionalGames.LudoInu
 {
     public class getLastSpinApi : MonoBehaviour
     {
+        public spineManager spinManager;
+
+        public bool canSpin;
 
         public void getLastSpin() => StartCoroutine(getLastSpinApi_Coroutine());
 
@@ -16,20 +19,47 @@ namespace com.impactionalGames.LudoInu
         {
             string url = "https://ludo-inu.herokuapp.com/api/getLastSpin";
 
-            WWWForm form = new WWWForm();
-            form.AddField("userid", playerPermData.getPhoneNumber());
+            Debug.Log("getting last spin data...");
 
-            using (UnityWebRequest request = UnityWebRequest.Post(url, form))
+            WWWForm form = new WWWForm();
+
+            
+            //headers["Content-Type"] = "application / x - form - url - encoded";
+
+
+            form.AddField("Phone", playerPermData.getPhoneNumber());
+
+            Debug.Log(form.ToString());
+
+            UnityWebRequest request = UnityWebRequest.Post(url, form);
+            request.SetRequestHeader("Content-Type", "application / x - form - url - encoded");
+
+            Debug.Log(request.ToString());
+
+            using (request)
+
             {
+
+                
                 yield return request.SendWebRequest();
                 if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
                 {
-                    Debug.Log(request.error);
-                    Debug.Log(request.downloadHandler.text);
+                    Debug.Log(request.error + "this is from lastSpinApi");
+
+                    if (request.downloadHandler.text == "Failure")
+                        canSpin = false;
+                    Debug.Log(canSpin);
+                   
                 }
                 else
                 {
+                    if (request.downloadHandler.text == "Success")
+                        canSpin = true;
+                    else canSpin = false;
                     Debug.Log(request.downloadHandler.text);
+                    Debug.Log(canSpin);
+                    spinManager.updateWheelState(spinState.spinAble);
+                    
 
                 }
             }
@@ -38,11 +68,11 @@ namespace com.impactionalGames.LudoInu
 
         IEnumerator addCoinsFromWheelCoroutine(string spinCoins)
         {
-            string url = "https://ludo-inu.herokuapp.com/api/addCoins";
+            string url = "https://ludo-inu.herokuapp.com/api/addSpinCoins";
 
             WWWForm form = new WWWForm();
             Debug.Log(playerPermData.getPhoneNumber());
-            form.AddField("userid", playerPermData.getPhoneNumber());
+            form.AddField("Phone", playerPermData.getPhoneNumber());
             form.AddField("coins", spinCoins);
 
             using (UnityWebRequest request = UnityWebRequest.Post(url, form))

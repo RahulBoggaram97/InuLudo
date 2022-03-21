@@ -40,19 +40,23 @@ namespace com.impactionalGames.LudoInu
         {
             uiSpinButton.onClick.AddListener(spinWhell);
 
-            //if (ShowWheelToPlayer())
-            //{
-            //    updateWheelState(spinState.spinAble);
-            //}
-            //else
-            //{
-            //    updateWheelState(spinState.timeCountDown);
-            //}
+            spinApis.getLastSpin();
+
+            if (ShowWheelToPlayer())
+            {
+                updateWheelState(spinState.spinAble);
+            }
+            else
+            {
+                updateWheelState(spinState.timeCountDown);
+            }
+
+           
 
         }
 
 
-        void updateWheelState(spinState newState)
+        public void updateWheelState(spinState newState)
         {
             state = newState;
 
@@ -80,9 +84,34 @@ namespace com.impactionalGames.LudoInu
             pickerWheelPanel.SetActive(false);
             timeToSpinWheelPanel.SetActive(true);
 
-            nextTimeToSpinText.text = long.Parse(PlayerPrefs.GetString("LastDateSpun")).ToString();
+            
+
+            nextTimeToSpinText.text = timeLeftForNextSpin();
+
+            
         }
 
+
+        string timeLeftForNextSpin()
+        {
+            string currentTime = DateTime.Now.ToString("h:mm tt");
+            int currenthours = int.Parse(currentTime.Substring(0, 1));
+            int currentMinutes = int.Parse(currentTime.Substring(2, 2));
+            string currentTt = currentTime.Substring(5, 2);
+
+
+            if (currentTt == "PM")
+                currenthours = currenthours + 12;
+
+
+            int hourLeft = 23 - currenthours;
+            int minutesLeft = 60 - currentMinutes;
+
+            string timeLeft = hourLeft.ToString() + ":" + minutesLeft.ToString();
+
+            return timeLeft;
+
+        }
 
 
         public void spinWhell()
@@ -100,15 +129,11 @@ namespace com.impactionalGames.LudoInu
                 updateWheelState(spinState.timeCountDown);
 
                 spinApis.addCoinsFromWheel(wheelPiece.Amount.ToString());
+                
             });
 
 
             pickWheel.Spin();
-
-            OnWheelSpun();
-
-            
-            
 
         }
 
@@ -116,16 +141,10 @@ namespace com.impactionalGames.LudoInu
 
         bool ShowWheelToPlayer()
         {
-            if (DateTime.Now.Ticks - TimeSpan.TicksPerDay > long.Parse(PlayerPrefs.GetString("LastDateSpun", "0")))
-                return true;
-            else
-                return false;
+            return spinApis.canSpin;
         }
 
-        void OnWheelSpun()
-        {
-            PlayerPrefs.SetString("LastDateSpun", DateTime.Now.Ticks.ToString());
-        }
+        
         
 
     }

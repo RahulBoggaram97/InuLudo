@@ -876,7 +876,7 @@ GameObject:
   - component: {fileID: 45982471}
   - component: {fileID: 45982470}
   m_Layer: 5
-  m_Name: playWithFriendText
+  m_Name: LocalMultiplayerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12605,6 +12605,7 @@ GameObject:
   - component: {fileID: 735613299}
   - component: {fileID: 735613300}
   - component: {fileID: 735613301}
+  - component: {fileID: 735613302}
   m_Layer: 0
   m_Name: GameMenuManager
   m_TagString: Untagged
@@ -12693,6 +12694,279 @@ MonoBehaviour:
   - {fileID: 2747488149050995300}
   - {fileID: 2747488148669979779}
   - {fileID: 1128213384}
+--- !u!114 &735613302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735613296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7603e2a2d7c3edf4f96694fc24fdbd87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textList:
+  - {fileID: 504391693}
+  - {fileID: 45982468}
+  - {fileID: 997301958}
+  - {fileID: 922471860}
+  - {fileID: 858922348}
+  - {fileID: 1381660414}
+  - {fileID: 2039180677}
+  - {fileID: 495276233}
+  - {fileID: 5144182211073279072}
+  - {fileID: 1344533163}
+  - {fileID: 1367906003}
+  - {fileID: 437328072}
+  - {fileID: 614102709}
+  - {fileID: 691152101}
+  - {fileID: 1243531862}
+  - {fileID: 156576741}
+  - {fileID: 1619145247}
+  - {fileID: 1327433419}
+  - {fileID: 470390117}
+  - {fileID: 1723778309}
+  - {fileID: 99488766}
+  - {fileID: 193888026}
+  - {fileID: 140772829}
+  - {fileID: 1447649353}
+  - {fileID: 306719856}
+  - {fileID: 1935893286}
+  - {fileID: 1558624406}
+  - {fileID: 365263125}
+  - {fileID: 625865395}
+  - {fileID: 2027661299}
+  - {fileID: 1712525558}
+  - {fileID: 256916649}
+  - {fileID: 5144182210429912026}
+  - {fileID: 876601100}
+  - {fileID: 2139742362}
+  - {fileID: 206683411}
+  - {fileID: 1686644234}
+  - {fileID: 1579792512}
+  - {fileID: 1884022027}
+  - {fileID: 1334472283}
+  - {fileID: 132491819}
+  - {fileID: 112111937}
+  - {fileID: 1436548461}
+  - {fileID: 5385329}
+  - {fileID: 204509142}
+  - {fileID: 1658345084}
+  - {fileID: 1716704758}
+  - {fileID: 519577339}
+  - {fileID: 653787286}
+  - {fileID: 1050447905}
+  - {fileID: 1019730725}
+  - {fileID: 1402762019}
+  - {fileID: 568319099}
+  - {fileID: 912161879}
+  - {fileID: 1211100746}
+  - {fileID: 530557459}
+  - {fileID: 5144182210767087477}
+  - {fileID: 934770903}
+  - {fileID: 193151759}
+  - {fileID: 979961957}
+  - {fileID: 1212628034}
+  - {fileID: 904471056}
+  - {fileID: 1743155849}
+  - {fileID: 1454495655}
+  - {fileID: 1224857753}
+  - {fileID: 1260472605}
+  - {fileID: 270413367}
+  - {fileID: 380724909}
+  - {fileID: 462575251}
+  - {fileID: 1659694697}
+  - {fileID: 307911270}
+  - {fileID: 1527782753}
+  - {fileID: 1053468793}
+  - {fileID: 1192534704}
+  - {fileID: 1795819990}
+  - {fileID: 469560471}
+  - {fileID: 1474948186}
+  - {fileID: 1809016327}
+  - {fileID: 1390474889}
+  - {fileID: 163170991}
+  - {fileID: 1444708919}
+  - {fileID: 195823014}
+  - {fileID: 142971550}
+  - {fileID: 1486684050}
+  - {fileID: 1836022574}
+  - {fileID: 1864408799}
+  english:
+  - Play Online
+  - Local Multplayer
+  - Play Offline
+  - Play With Bot
+  - 1V1
+  - 1 Winner
+  - 2 Winners
+  - 3 Winners
+  - 1V1
+  - 1V1
+  - 1V1
+  - 1V1
+  - 1V1
+  - 1V1
+  - 1 Winner
+  - 1 Winner
+  - 1 Winner
+  - 1 Winner
+  - 1 Winner
+  - 1 Winner
+  - 2 Winners
+  - 2 Winners
+  - 2 Winners
+  - 2 Winners
+  - 2 Winners
+  - 2 Winners
+  - 3 Winners
+  - 3 Winners
+  - 3 Winners
+  - 3 Winners
+  - 3 Winners
+  - 3 Winners
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Prize Pool
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Entry
+  - Joint
+  - Create
+  - Create
+  - Join
+  - Enter code
+  - Themes
+  hindi:
+  - "\u0911\u0928\u0932\u093E\u0907\u0928 \u0916\u0947\u0932"
+  - "\u0938\u094D\u0925\u093E\u0928\u0940\u092F \u092E\u0932\u094D\u091F\u0940\u092A\u094D\u0932\u0947\u092F\u0930"
+  - "\u0911\u092B\u093C\u0932\u093E\u0907\u0928 \u0916\u0947\u0932"
+  - "\u092C\u0949\u091F \u0915\u0947 \u0938\u093E\u0925 \u0916\u0947\u0932\u0947\u0902"
+  - 1V1
+  - "1 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "2 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "3 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - 1V1
+  - 1V1
+  - 1V1
+  - 1V1
+  - 1V1
+  - 1V1
+  - "1 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "1 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "1 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "1 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "1 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "1 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "2 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "2 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "2 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "2 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "2 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "2 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "3 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "3 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "3 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "3 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "3 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "3 \u0935\u093F\u091C\u0947\u0924\u093E"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u0942\u0932"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u092A\u094D\u0930\u0935\u0947\u0936"
+  - "\u0938\u0902\u092F\u094B\u091C\u093F\u0924"
+  - "\u0928\u093F\u0930\u094D\u092E\u093E\u0923 "
+  - "\u0928\u093F\u0930\u094D\u092E\u093E\u0923 "
+  - "\u0938\u0902\u092F\u094B\u091C\u093F\u0924"
+  - "\u0915\u094B\u0921 \u0926\u0930\u094D\u091C"
+  - "\u0935\u093F\u0937\u092F\u094B\u0902"
 --- !u!1 &748669811
 GameObject:
   m_ObjectHideFlags: 0
@@ -14815,7 +15089,7 @@ GameObject:
   - component: {fileID: 922471863}
   - component: {fileID: 922471862}
   m_Layer: 5
-  m_Name: playWithFriendText
+  m_Name: PlayWithBotText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15901,7 +16175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &970997452
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16482,7 +16756,7 @@ GameObject:
   - component: {fileID: 997301961}
   - component: {fileID: 997301960}
   m_Layer: 5
-  m_Name: playWithFriendText
+  m_Name: playOfflineText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29030,7 +29304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1749204906
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30118,7 +30392,7 @@ GameObject:
   - component: {fileID: 1864408802}
   - component: {fileID: 1864408801}
   m_Layer: 5
-  m_Name: t
+  m_Name: themesttext
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

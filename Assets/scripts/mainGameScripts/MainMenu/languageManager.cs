@@ -6,23 +6,25 @@ using TMPro;
 
 
 
-namespace com.impactionalGames.LudoPrime
+namespace com.impactionalGames.LudoInu
 {
     public class languageManager : MonoBehaviour
     {
 
 
-        public Dropdown langDrop;
+       
 
-       
-       
-       
-  
 
-        public void Start()
+        private void Awake()
         {
-            //updateLanguage();
-            
+            settingManager.onlangChanged += updateLanguage;
+        }
+
+
+
+        private void Start()
+        {
+            updateLanguage(playerPermData.getLanguage());
         }
 
 
@@ -33,11 +35,11 @@ namespace com.impactionalGames.LudoPrime
 
         
 
-        public void updateLanguage()
+        public void updateLanguage(string lang)
         {
             for (int i = 0; i < textList.Count; i++)
             {
-                if (langDrop.value == 1)
+                if (lang == playerPermData.HINDI_KEY)
                 {
                     if(textList[i].GetComponent<Text>() != null)
                     {

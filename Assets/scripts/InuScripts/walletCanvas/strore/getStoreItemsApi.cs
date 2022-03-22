@@ -30,7 +30,7 @@ namespace com.impactionalGames.LudoInu
 
         public GameObject packPrefab;
 
-        public Transform placeToInstatiate;
+        public Transform[] placeToInstatiate =  new Transform[4];
 
         public void getAllItemsInStore() => StartCoroutine(getAllItemsInStore_coroutine()); 
 
@@ -72,7 +72,20 @@ namespace com.impactionalGames.LudoInu
 
                         while (node[i] != null)
                         {
-                            GameObject summonedPack = Instantiate(packPrefab, placeToInstatiate);
+                            string typeShortend = node[i]["Type"].ToString().Substring(1, node[i]["Type"].ToString().Length -2);
+                            Debug.Log("type shortend is: " + typeShortend);
+
+                            Vector3 postionForinstantiate = new Vector3(0, sectionToInstatiate(typeShortend).position.y + (i * -800), 0);
+                            Debug.Log(node[i]["Type"].ToString());
+                           
+                            
+
+                            GameObject summonedPack = Instantiate(packPrefab, sectionToInstatiate(typeShortend));
+                            RectTransform rectTransform = summonedPack.GetComponent<RectTransform>();
+
+
+                            rectTransform.anchoredPosition = new Vector2(0,  (i * -600));
+                            Debug.Log(sectionToInstatiate(typeShortend).position.y + (i * -650));
                             storePackCollectore packVariabls = summonedPack.GetComponent<storePackCollectore>();
 
                             packVariabls.id = node[i]["ID"].ToString();
@@ -91,6 +104,32 @@ namespace com.impactionalGames.LudoInu
                         }
                     }
 
+                }
+            }
+
+
+
+            Transform sectionToInstatiate(string type)
+            {
+                switch (type)
+                {
+                    case "Coins":
+                        return placeToInstatiate[0];
+                        break;
+                    case "Diamonds":
+                        return placeToInstatiate[1];
+                        break;
+                    case "TalkTime":
+                        return placeToInstatiate[2];
+                        break;
+                    case "Theme":
+                        return placeToInstatiate[3];
+                        break;
+                    case "Discount":
+                        return placeToInstatiate[4];
+                        break;
+                    default:
+                        return placeToInstatiate[0];
                 }
             }
         }

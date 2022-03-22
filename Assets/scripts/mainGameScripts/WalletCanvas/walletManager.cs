@@ -268,6 +268,12 @@ namespace com.impactionalGames.LudoInu
             walletManager.instance.updateWalletState(walletState.store);
         }
 
+        public void ThemeOnClick()
+        {
+            mainMenuManager.instance.updateMainMenuState(mainMenuState.themes);
+            walletManager.instance.updateWalletState(walletState.intial);
+        }
+
     }
 
 

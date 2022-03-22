@@ -3940,6 +3940,7 @@ GameObject:
   - component: {fileID: 495100657}
   - component: {fileID: 495100656}
   - component: {fileID: 495100658}
+  - component: {fileID: 495100659}
   m_Layer: 0
   m_Name: GamManager
   m_TagString: Untagged
@@ -4029,6 +4030,27 @@ MonoBehaviour:
   - {fileID: 821320759}
   - {fileID: 1266394428}
   - {fileID: 724376062}
+--- !u!114 &495100659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495100654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7603e2a2d7c3edf4f96694fc24fdbd87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textList:
+  - {fileID: 1330475045}
+  - {fileID: 870865939}
+  english:
+  - 2 Player
+  - 4 Player
+  hindi:
+  - "2 \u0916\u093F\u0932\u093E\u0921\u093C\u0940"
+  - "4 \u0916\u093F\u0932\u093E\u0921\u093C\u0940"
 --- !u!1 &505676354
 GameObject:
   m_ObjectHideFlags: 0
@@ -6085,7 +6107,7 @@ GameObject:
   - component: {fileID: 870865942}
   - component: {fileID: 870865941}
   m_Layer: 5
-  m_Name: Text
+  m_Name: 4PlayerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9155,7 +9177,7 @@ GameObject:
   - component: {fileID: 1330475048}
   - component: {fileID: 1330475047}
   m_Layer: 5
-  m_Name: Text
+  m_Name: 2PlayerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

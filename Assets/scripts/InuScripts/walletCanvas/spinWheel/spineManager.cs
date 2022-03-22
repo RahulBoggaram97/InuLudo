@@ -95,6 +95,7 @@ namespace com.impactionalGames.LudoInu
         string timeLeftForNextSpin()
         {
             string currentTime = DateTime.Now.ToString("h:mm tt");
+            Debug.Log(currentTime);
             int currenthours = int.Parse(currentTime.Substring(0, 1));
             int currentMinutes = int.Parse(currentTime.Substring(2, 2));
             string currentTt = currentTime.Substring(5, 2);

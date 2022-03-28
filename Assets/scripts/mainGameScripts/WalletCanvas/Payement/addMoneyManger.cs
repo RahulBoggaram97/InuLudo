@@ -7,15 +7,15 @@ namespace com.impactionalGames.LudoInu
 {
     public class addMoneyManger : MonoBehaviour
     {
-        public InputField amountField;
+        //public InputField amountField;
 
-        public webVeiwManager webViewMan;
+        //public webVeiwManager webViewMan;
 
-        public void AddMoney()
-        {
-            webViewMan.Url = "https://ludogame-backend.herokuapp.com/paynow/" + playerPermData.getPhoneNumber() + "/" + amountField.text;
+        //public void AddMoney()
+        //{
+        //    webViewMan.Url = "https://ludogame-backend.herokuapp.com/paynow/" + playerPermData.getPhoneNumber() + "/" + amountField.text;
 
-            webViewMan.openPayTmGateway();
-        }
+        //    webViewMan.openPayTmGateway();
+        //}
     }
 }

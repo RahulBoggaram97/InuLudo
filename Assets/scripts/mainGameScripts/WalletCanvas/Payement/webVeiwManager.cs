@@ -7,69 +7,69 @@ namespace com.impactionalGames.LudoInu
 {
     public class webVeiwManager : MonoBehaviour
     {
-        public string Url;
+        //public string Url;
 
-        WebViewObject webViewObject;
+        ////WebViewObject webViewObject;
 
-        public string murl;
+        //public string murl;
 
-        public Text status;
+        //public Text status;
 
-        public getUserDetails getDetails;
+        //public getUserDetails getDetails;
 
         
 
-        void Update()
-        {
-            if (webViewObject != null)
-            {
+        //void Update()
+        //{
+        //    if (webViewObject != null)
+        //    {
 
-                webViewObject.EvaluateJS("if (location) window.Unity.call('url:' + location.href);");
-                status.text = murl;
-            }
+        //        webViewObject.EvaluateJS("if (location) window.Unity.call('url:' + location.href);");
+        //        status.text = murl;
+        //    }
 
-            if (murl.Contains("success"))
-            {
-                onTransactoinSuccessHandler();
-            }
-        }
-
-
-        public void openPayTmGateway()
-        {
-            webViewObject = (new GameObject("WebViewObject")).AddComponent<WebViewObject>();
-            webViewObject.Init((msg) =>
-            {
-                if (msg.StartsWith("http"))
-                {
-                    murl = msg.Substring(4);
-                }
-                if (msg.StartsWith("url:"))
-                {
-                    murl = msg.Substring(4);
-                }
-
-            });
-            webViewObject.EvaluateJS(@"
-        window.addEventListener('onpageshow', function(){
-        Unity.call('url:' + window.location.href);
-         }, false);
-            ");
-
-            webViewObject.EvaluateJS("if (location) window.Unity.call(location.href);");
-
-            webViewObject.SetMargins(5, 200, 5, 500);
-            webViewObject.SetVisibility(true);
-            webViewObject.LoadURL(Url);
+        //    if (murl.Contains("success"))
+        //    {
+        //        onTransactoinSuccessHandler();
+        //    }
+        //}
 
 
-        }
+        //public void openPayTmGateway()
+        //{
+        //    webViewObject = (new GameObject("WebViewObject")).AddComponent<WebViewObject>();
+        //    webViewObject.Init((msg) =>
+        //    {
+        //        if (msg.StartsWith("http"))
+        //        {
+        //            murl = msg.Substring(4);
+        //        }
+        //        if (msg.StartsWith("url:"))
+        //        {
+        //            murl = msg.Substring(4);
+        //        }
+
+        //    });
+        //    webViewObject.EvaluateJS(@"
+        //window.addEventListener('onpageshow', function(){
+        //Unity.call('url:' + window.location.href);
+        // }, false);
+        //    ");
+
+        //    webViewObject.EvaluateJS("if (location) window.Unity.call(location.href);");
+
+        //    webViewObject.SetMargins(5, 200, 5, 500);
+        //    webViewObject.SetVisibility(true);
+        //    webViewObject.LoadURL(Url);
 
 
-        void onTransactoinSuccessHandler()
-        {
-            Destroy(webViewObject);
-            getDetails.getUserDet();
-        }
+        //}
+
+
+        //void onTransactoinSuccessHandler()
+        //{
+        //    Destroy(webViewObject);
+        //    getDetails.getUserDet();
+        //}
     }
 }

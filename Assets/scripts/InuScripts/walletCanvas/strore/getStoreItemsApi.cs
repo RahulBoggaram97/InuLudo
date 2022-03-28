@@ -10,32 +10,19 @@ namespace com.impactionalGames.LudoInu
     public class getStoreItemsApi : MonoBehaviour
     {
 
-        private void Awake()
-        {
-            walletManager.onWalletStateChanged += menuStateisStore;
-        }
-
-        private void OnDestroy()
-        {
-            walletManager.onWalletStateChanged -= menuStateisStore;
-        }
-
-        private void menuStateisStore(walletState state)
-        {
-            if(state == walletState.store)
-            {
-                getAllItemsInStore();
-            }
-        }
 
         public GameObject packPrefab;
 
         public Transform[] placeToInstatiate =  new Transform[4];
 
-        public void getAllItemsInStore() => StartCoroutine(getAllItemsInStore_coroutine()); 
+        public void getAllItemsInStore() {
+            this.gameObject.SetActive(true);
+            StartCoroutine(getAllItemsInStore_coroutine());
+                }
 
         IEnumerator getAllItemsInStore_coroutine()
         {
+            mainMenuManager.Instance.LoadingDebugText.text = "Setting up Store...";
             string url = "https://ludo-inu.herokuapp.com/api/getAllItemsInStore";
 
             Debug.Log("calling the api...");
@@ -104,6 +91,9 @@ namespace com.impactionalGames.LudoInu
                         }
                     }
 
+
+                    mainMenuManager.Instance.LoadingDebugText.text = "Store all set up.";
+                    walletManager.Instance.coroutineCount++;
                 }
             }
 

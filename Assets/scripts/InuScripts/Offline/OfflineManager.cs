@@ -31,13 +31,19 @@ namespace com.impactionalGames.LudoInu
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && !gameStarted)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (gametype != typeOfGame.selctionMenu)
+                {
 
                     selectTypeOfGame(typeOfGame.selctionMenu);
+                }
 
-                else SceneManager.UnloadScene(selfSceneName);
+                else 
+                {
+                    SceneManager.UnloadScene(selfSceneName);
+                    mainMenuManager.Instance.updateMainMenuState(mainMenuState.initial);
+                }
 
 
 

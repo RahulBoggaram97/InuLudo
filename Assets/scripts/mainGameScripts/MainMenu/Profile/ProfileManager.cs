@@ -31,8 +31,12 @@ namespace com.impactionalGames.LudoInu
         public Image profilePic;
 
 
-        private void Start()
+        public void profileLoad()
         {
+           
+
+            this.gameObject.SetActive(true);
+            mainMenuManager.Instance.LoadingDebugText.text = "Loading Profle...";
             getPlayerName();
 
             getuseDetObject.getUserDet();
@@ -63,6 +67,9 @@ namespace com.impactionalGames.LudoInu
             //loseMatchesText.text = playerPermData.getLoseMatchesr();
 
             //refrelCodeText.text = "Refrel Code: " + playerPermData.getReferCode();
+
+            mainMenuManager.Instance.LoadingDebugText.text = "Profile Loaded.";
+            walletManager.Instance.coroutineCount++;
 
         }
 
@@ -101,6 +108,7 @@ namespace com.impactionalGames.LudoInu
 
         public IEnumerator DownloadImage(string downloadUrl)
         {
+            mainMenuManager.Instance.LoadingDebugText.text = "Downloading Profile Pic...";
             Debug.Log("Downloading image");
 
             Debug.Log(downloadUrl);
@@ -119,6 +127,7 @@ namespace com.impactionalGames.LudoInu
             {
                 downloadedTexture = ((DownloadHandlerTexture)request.downloadHandler).texture;
                 Debug.Log("image downladed");
+                mainMenuManager.Instance.LoadingDebugText.text = "Profile Pic downladed.";
             }
 
             if (downloadedTexture != null)

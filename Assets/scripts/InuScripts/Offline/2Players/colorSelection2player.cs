@@ -7,119 +7,184 @@ namespace com.impactionalGames.LudoInu
 {
     public class colorSelection2player : MonoBehaviour
     {
+
+
         public string player1Colour;
         public string player2Colour;
 
         public Image[] border;
         public Image[] border2;
-        
+
+        public Text debugText;
+
 
         public void selectRed1Colour()
         {
-            for(int i = 0; i < border.Length; i++)
+            if (player2Colour != "red")
             {
-                border[i].gameObject.SetActive(false);
+                for (int i = 0; i < border.Length; i++)
+                {
+                    border[i].gameObject.SetActive(false);
+                }
+
+
+                border[0].gameObject.SetActive(true);
+
+                player1Colour = "red";
             }
-
-
-            border[0].gameObject.SetActive(true);
-
-            player1Colour = "red";
+            else
+            {
+                StartCoroutine(displayDebugText("Colour is already selected, select another one."));
+            }
         }
 
         public void selectGreen1Colour()
         {
-            for (int i = 0; i < border.Length; i++)
+            if (player2Colour != "green")
             {
-                border[i].gameObject.SetActive(false);
+                for (int i = 0; i < border.Length; i++)
+                {
+                    border[i].gameObject.SetActive(false);
+                }
+
+
+                border[1].gameObject.SetActive(true);
+
+                player1Colour = "green";
             }
-
-
-            border[1].gameObject.SetActive(true);
-
-            player1Colour = "green";
+            else
+            {
+                StartCoroutine(displayDebugText("Colour is already selected, select another one."));
+            }
         }
 
         public void selectYellow1Colour()
         {
-            for (int i = 0; i < border.Length; i++)
+            if (player2Colour != "yellow")
             {
-                border[i].gameObject.SetActive(false);
+                for (int i = 0; i < border.Length; i++)
+                {
+                    border[i].gameObject.SetActive(false);
+                }
+
+
+                border[2].gameObject.SetActive(true);
+
+                player1Colour = "yellow";
             }
-
-
-            border[2].gameObject.SetActive(true);
-
-            player1Colour = "yellow";
+            else
+            {
+                StartCoroutine(displayDebugText("Colour is already selected, select another one."));
+            }
         }
 
         public void selectBlue1Colour()
         {
-            for (int i = 0; i < border.Length; i++)
+            if (player2Colour != "blue")
             {
-                border[i].gameObject.SetActive(false);
+                for (int i = 0; i < border.Length; i++)
+                {
+                    border[i].gameObject.SetActive(false);
+                }
+
+
+                border[3].gameObject.SetActive(true);
+
+                player1Colour = "blue";
             }
-
-
-            border[3].gameObject.SetActive(true);
-
-            player1Colour = "blue";
+            else
+            {
+                StartCoroutine(displayDebugText("Colour is already selected, select another one."));
+            }
         }
 
 
         public void selectRed2Colour()
         {
-            for (int i = 0; i < border2.Length; i++)
+            if (player1Colour != "red")
             {
-                border2[i].gameObject.SetActive(false);
+                for (int i = 0; i < border2.Length; i++)
+                {
+                    border2[i].gameObject.SetActive(false);
+                }
+
+
+                border2[0].gameObject.SetActive(true);
+
+                player2Colour = "red";
             }
-
-
-            border2[0].gameObject.SetActive(true);
-
-            player2Colour = "red";
+            else
+            {
+                StartCoroutine(displayDebugText("Colour is already selected, select another one."));
+            }
         }
 
         public void selectGreen2Colour()
         {
-            for (int i = 0; i < border2.Length; i++)
+            if (player1Colour != "green")
             {
-                border2[i].gameObject.SetActive(false);
+                for (int i = 0; i < border2.Length; i++)
+                {
+                    border2[i].gameObject.SetActive(false);
+                }
+
+
+                border2[1].gameObject.SetActive(true);
+
+                player2Colour = "green";
             }
-
-
-            border2[1].gameObject.SetActive(true);
-
-            player2Colour = "green";
+            else
+            {
+                StartCoroutine(displayDebugText("Colour is already selected, select another one."));
+            }
         }
 
         public void selectYellow2Colour()
         {
-            for (int i = 0; i < border2.Length; i++)
+            if (player1Colour != "yellow")
             {
-                border2[i].gameObject.SetActive(false);
+                for (int i = 0; i < border2.Length; i++)
+                {
+                    border2[i].gameObject.SetActive(false);
+                }
+
+
+                border2[2].gameObject.SetActive(true);
+
+                player2Colour = "yellow";
             }
-
-
-            border2[2].gameObject.SetActive(true);
-
-            player2Colour = "yellow";
+            else
+            {
+                StartCoroutine(displayDebugText("Colour is already selected, select another one."));
+            }
         }
 
         public void selectBlue2Colour()
         {
-            for (int i = 0; i < border2.Length; i++)
+            if (player1Colour != "blue")
             {
-                border2[i].gameObject.SetActive(false);
+                for (int i = 0; i < border2.Length; i++)
+                {
+                    border2[i].gameObject.SetActive(false);
+                }
+
+
+                border2[3].gameObject.SetActive(true);
+
+                player2Colour = "blue";
             }
-
-
-            border2[3].gameObject.SetActive(true);
-
-            player2Colour = "blue";
+            else
+            {
+                StartCoroutine(displayDebugText("Colour is already selected, select another one."));
+            }
         }
 
+        IEnumerator displayDebugText(string newText)
+        {
+            debugText.text = newText;
+            yield return new WaitForSeconds(5);
+            debugText.text = "";
+        }
 
-        
     }
 }

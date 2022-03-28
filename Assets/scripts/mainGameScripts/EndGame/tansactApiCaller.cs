@@ -11,7 +11,7 @@ namespace com.impactionalGames.LudoInu
 
         IEnumerator transferMoney_Coroutine(string amount)
         {
-            Debug.Log("loding");
+            Debug.Log("sending money transact api");
 
             string url = "https://ludo-inu.herokuapp.com/api/addTransactionHistory";
             WWWForm form = new WWWForm();

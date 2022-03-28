@@ -14,7 +14,12 @@ namespace com.impactionalGames.LudoInu
         public List<Text> nameList = new List<Text>();
         public List<Text> diamaondsList = new List<Text>();
 
-        public void getLeaderBoard() => StartCoroutine(getLeaderBoard_coroutine());
+        public void getLeaderBoard()
+        { 
+            this.gameObject.SetActive(true);
+            StartCoroutine(getLeaderBoard_coroutine()); 
+        }
+
 
         IEnumerator getLeaderBoard_coroutine()
         {
@@ -51,6 +56,8 @@ namespace com.impactionalGames.LudoInu
 
                     fillRankingTexts(node);
 
+                    mainMenuManager.Instance.LoadingDebugText.text = "LeaderBoard all set up.";
+                    walletManager.Instance.coroutineCount++;
                 }
             }
         }

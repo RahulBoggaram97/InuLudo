@@ -40,20 +40,9 @@ namespace com.impactionalGames.LudoInu
         {
             uiSpinButton.onClick.AddListener(spinWhell);
 
-            spinApis.getLastSpin();
-
-            if (ShowWheelToPlayer())
-            {
-                updateWheelState(spinState.spinAble);
-            }
-            else
-            {
-                updateWheelState(spinState.timeCountDown);
-            }
-
-           
-
         }
+
+        
 
 
         public void updateWheelState(spinState newState)
@@ -130,6 +119,7 @@ namespace com.impactionalGames.LudoInu
                 updateWheelState(spinState.timeCountDown);
 
                 spinApis.addCoinsFromWheel(wheelPiece.Amount.ToString());
+                walletManager.Instance.profileMan.GetComponent<ProfileManager>().getuseDetObject.getUserDet();
                 
             });
 
@@ -140,9 +130,18 @@ namespace com.impactionalGames.LudoInu
 
 
 
-        bool ShowWheelToPlayer()
+        public void ShowWheelToPlayer()
         {
-            return spinApis.canSpin;
+            if (spinApis.canSpin)
+            {
+                Debug.Log("the can spin bool is: " + spinApis.canSpin);
+                updateWheelState(spinState.spinAble);
+            }
+            else
+            {
+                Debug.Log("the can spin bool is: " + spinApis.canSpin);
+                updateWheelState(spinState.timeCountDown);
+            }
         }
 
         

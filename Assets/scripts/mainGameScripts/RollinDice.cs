@@ -25,7 +25,7 @@ namespace com.impactionalGames.LudoInu
 
         public int score = 0;
 
-        public Text scoreText;
+        public TMPro.TextMeshPro scoreText;
 
         private void OnMouseDown()
         {

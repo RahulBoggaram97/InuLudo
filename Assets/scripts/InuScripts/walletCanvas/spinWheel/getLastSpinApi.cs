@@ -11,12 +11,20 @@ namespace com.impactionalGames.LudoInu
 
         public bool canSpin;
 
-        public void getLastSpin() => StartCoroutine(getLastSpinApi_Coroutine());
+        public void getLastSpin() 
+        {
+            this.gameObject.SetActive(true);
+            StartCoroutine(getLastSpinApi_Coroutine());
+        }
+
 
         public void addCoinsFromWheel(string spinCoins) => StartCoroutine(addCoinsFromWheelCoroutine(spinCoins));
 
         IEnumerator getLastSpinApi_Coroutine()
         {
+           
+
+            mainMenuManager.Instance.LoadingDebugText.text = "Setting up spin...";
             string url = "https://ludo-inu.herokuapp.com/api/getLastSpin";
 
             Debug.Log("getting last spin data...");
@@ -31,12 +39,11 @@ namespace com.impactionalGames.LudoInu
 
             Debug.Log(form.ToString());
 
-            UnityWebRequest request = UnityWebRequest.Post(url, form);
-            request.SetRequestHeader("Content-Type", "application / x - form - url - encoded");
+            
 
-            Debug.Log(request.ToString());
+         
 
-            using (request)
+            using (UnityWebRequest request = UnityWebRequest.Post(url, form))
 
             {
 
@@ -47,7 +54,14 @@ namespace com.impactionalGames.LudoInu
                     Debug.Log(request.error + "this is from lastSpinApi");
 
                     if (request.downloadHandler.text == "Failure")
+                    {
                         canSpin = false;
+                    }
+                        
+                    else  if(request.downloadHandler.text == "Success")
+                    {
+                        canSpin = true;
+                    }
                     Debug.Log(canSpin);
                    
                 }
@@ -58,10 +72,13 @@ namespace com.impactionalGames.LudoInu
                     else canSpin = false;
                     Debug.Log(request.downloadHandler.text);
                     Debug.Log(canSpin);
-                    spinManager.updateWheelState(spinState.spinAble);
+                    
                     
 
                 }
+
+                mainMenuManager.Instance.LoadingDebugText.text = "Spin all set up.";
+                walletManager.Instance.coroutineCount++;
             }
         }
         

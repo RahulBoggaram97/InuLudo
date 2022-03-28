@@ -18,7 +18,7 @@ namespace com.impactionalGames.LudoInu
         public bool AddPlayerPiece(playerPeiceOffline playerPiece_)
         {
             if (this.name == "CentreHomePoint") { Completed(playerPiece_); }
-            else if (this.name != "PathPoints" && this.name != "PathPoints (8)" && this.name != "PathPoints (13)" && this.name != "PathPoints (21)" && this.name != "PathPoints (26)" && this.name != "PathPoints (34)" && this.name != "PathPoints (39)" && this.name != "PathPoints (47)" && this.name != "CentreHomePoint")
+            else if (this.name != "pathPointsOffline" && this.name != "pathPointsOffline (7)" && this.name != "pathPointsOffline (12)" && this.name != "pathPointsOffline (20)" && this.name != "pathPointsOffline (25)" && this.name != "pathPointsOffline (33)" && this.name != "pathPointsOffline (38)" && this.name != "pathPointsOffline (46)" && this.name != "CentreHomePoint")
             {
                 if (playerPieces.Count == 1)
                 {

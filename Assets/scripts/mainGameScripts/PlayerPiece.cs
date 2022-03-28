@@ -54,6 +54,8 @@ namespace com.impactionalGames.LudoInu
 
         IEnumerator MoveSteps_Enum(PathPoints[] pathPointsToMoveOn_)
         {
+            if(previousPathPoint != null)
+            adjustPlayers(previousPathPoint);
             yield return new WaitForSeconds(0.5f);
             int numOfStepsToMove = GameManager.gm.numOfStepsToMove;
 
@@ -100,6 +102,10 @@ namespace com.impactionalGames.LudoInu
 
 
 
+                    }
+                    else
+                    {
+                        GameManager.gm.rolleddice.hasMoved = false;
                     }
                 }
 
@@ -153,6 +159,7 @@ namespace com.impactionalGames.LudoInu
 
             }
             GameManager.gm.CanPlayerMove = true;
+           
             GameManager.gm.RollingDiceManager();
 
             if (moveSteps_Coroutine != null)
@@ -178,6 +185,17 @@ namespace com.impactionalGames.LudoInu
                 return true;
             }
             return false;
+        }
+
+
+        void adjustPlayers(PathPoints privousPathPoints)
+        {
+            if (privousPathPoints.playerPieces.Count == 2)
+            {
+                    privousPathPoints.playerPieces[0].gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                    privousPathPoints.playerPieces[1].gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                    Debug.Log("Player piece count of " + this.name + "is : " + privousPathPoints.playerPieces.Count);
+            }
         }
 
        

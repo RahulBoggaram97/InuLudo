@@ -19,7 +19,8 @@ namespace com.impactionalGames.LudoInu
 
         private void HandleMainMenuStateChanged(mainMenuState state)
         {
-            if(state == mainMenuState.initial)
+            
+            if(state == mainMenuState.initial && animator != null)
             {
                 animator.SetTrigger("bounce");
             }

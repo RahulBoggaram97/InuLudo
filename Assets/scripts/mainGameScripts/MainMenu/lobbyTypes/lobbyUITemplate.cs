@@ -29,6 +29,13 @@ namespace com.impactionalGames.LudoInu
 
         public static event Action<int> manageFee;
 
+
+
+        private void Awake()
+        {
+            PhotonNetwork.AutomaticallySyncScene = true;
+        }
+
         private void Start()
         {
             olC = GameObject.Find("PlayOnlinePanel").GetComponent<onlineLobbyCreater>();
@@ -87,7 +94,7 @@ namespace com.impactionalGames.LudoInu
             await Task.Yield();
         }
 
+        
 
-       
     }
 }

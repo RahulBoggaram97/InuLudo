@@ -25,7 +25,7 @@ namespace com.impactionalGames.LudoInu
 
         public Transform[] dicePostions;
 
-        public Text[] inGameUsername;
+        public TMPro.TextMeshPro[] inGameUsername;
 
         public GameObject[] dices;
 

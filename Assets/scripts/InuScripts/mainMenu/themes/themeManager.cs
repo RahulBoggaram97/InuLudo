@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 using System;
+using System.Threading.Tasks;
 
 namespace com.impactionalGames.LudoInu
 {
@@ -20,13 +21,14 @@ namespace com.impactionalGames.LudoInu
                 instance = this;
         }
 
-        public void setTheme(Image thisImage)
+        public  void setTheme(Image thisImage)
         {
-            string path = GetSavePath();
             _themeImage.sprite = thisImage.sprite;
+            string path = GetSavePath();
 
-            ConvertToPngAndSave(path);
-            
+
+            StartCoroutine( ConvertToPngAndSave(path));
+
         }
 
         private string GetSavePath()
@@ -45,8 +47,9 @@ namespace com.impactionalGames.LudoInu
             
         }
 
-        private void ConvertToPngAndSave(string path)
+        private IEnumerator ConvertToPngAndSave(string path)
         {
+            yield return new WaitForFixedUpdate();
             //Convert to png
             byte[] bytes = _themeImage.sprite.texture.EncodeToPNG();
             //Save

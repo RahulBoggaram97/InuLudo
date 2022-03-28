@@ -27,18 +27,23 @@ namespace com.impactionalGames.LudoInu
 
         public Button startButton;
 
+
+        public GameObject backButtonPopUp;
+
         [Header("Player images in lobby")]
         public GameObject[] playerLobyImageArray;
 
-        [Header("In-Game UI")]
-        public GameObject scoreGameObject;
-        public GameObject inGameUserNameGameObject;
+        //[Header("In-Game UI")]
+        //public GameObject scoreGameObject;
+        //public GameObject inGameUserNameGameObject;
         
 
         private void Start()
         {
             checkWhichLobby();
            
+            Destroy(mainMenuManager.Instance.gameObject);
+            Destroy(walletManager.Instance.gameObject);
             
 
             debugtextLobby.text = "the Room code is " + PhotonNetwork.CurrentRoom.Name;
@@ -50,7 +55,7 @@ namespace com.impactionalGames.LudoInu
             {
                 if(PhotonNetwork.CurrentRoom.IsOpen != false)
                 {
-                    SceneManager.LoadScene(0);
+                   backButtonPopUp.SetActive(true);
                 }
             }
         }
@@ -77,7 +82,9 @@ namespace com.impactionalGames.LudoInu
 
         public void lobbyStartButton()
         {
+            if(PhotonNetwork.PlayerList.Length >= 2)
             photonView.RPC("ownershipTransferAtTheStart", RpcTarget.AllBufferedViaServer);
+           
             
             
         }
@@ -151,15 +158,16 @@ namespace com.impactionalGames.LudoInu
             else
             {
                 return;
+                
             }
-            lobbyPanel.SetActive(false);
 
+            lobbyPanel.SetActive(false);
             this.gameObject.GetComponent<GameManager>().totalPlayersCanPlay = this.totalPlayersCanPlay;
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
 
-            scoreGameObject.SetActive(true);
-            inGameUserNameGameObject.SetActive(true);
+            //scoreGameObject.SetActive(true);
+            //inGameUserNameGameObject.SetActive(true);
 
         }
 

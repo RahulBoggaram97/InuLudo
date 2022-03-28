@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
 
 namespace com.impactionalGames.LudoInu
@@ -86,8 +87,6 @@ namespace com.impactionalGames.LudoInu
         }
 
 
-
-
         public override void OnJoinedLobby()
         {
             PhotonNetwork.NickName = playerPermData.getUserName();
@@ -97,12 +96,27 @@ namespace com.impactionalGames.LudoInu
 
         }
 
+
+
+
         public void joinTheMainGame()
         {
 
             PhotonNetwork.JoinRandomOrCreateRoom();
-                  
+
+
+
         }
+
+
+
+
+
+        //public override void OnJoinRoomFailed(short returnCode, string message)
+        //{
+        //    base.OnJoinRoomFailed(returnCode, message);
+        //    Debug.Log(returnCode + message);
+        //}
 
         public override void OnJoinedRoom()
         {
@@ -110,7 +124,10 @@ namespace com.impactionalGames.LudoInu
 
             PhotonNetwork.LoadLevel("LudoBoard");
 
+
         }
+
+
 
 
 

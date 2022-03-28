@@ -21,7 +21,7 @@ namespace com.impactionalGames.LudoInu
         public bool AddPlayerPiece(PlayerPiece playerPiece_)
         {
             if (this.name == "CentreHomePoint") { Completed(playerPiece_); }
-            else if (this.name != "PathPoints" && this.name != "PathPoints (8)" && this.name != "PathPoints (13)" && this.name != "PathPoints (21)" && this.name != "PathPoints (26)" && this.name != "PathPoints (34)" && this.name != "PathPoints (39)" && this.name != "PathPoints (47)" && this.name != "CentreHomePoint")
+            else if (this.name != "PathPoint (7)" && this.name != "PathPoint (12)" && this.name != "PathPoint (20)" && this.name != "PathPoint (25)" && this.name != "PathPoint (33)" && this.name != "PathPoint (38)" && this.name != "PathPoint (46)" && this.name != "PathPoint (51)" && this.name != "CentreHomePoint")
             {
                 if (playerPieces.Count == 1)
                 {
@@ -51,16 +51,7 @@ namespace com.impactionalGames.LudoInu
                     else if(prePlayerPieceName.Contains(curPlayerPieceName))
                     {
                         //if they are of same colour we lower the scale and offsets them a bit
-                        playerPieces[0].gameObject.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
-
-
-                        playerPieces[0].transform.position = playerPieces[0].transform.position + new Vector3(0.07f, 0f, 0f);
-
-                        playerPiece_.gameObject.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
-
-
-                        playerPiece_.transform.position = playerPieces[0].transform.position + new Vector3(-0.14f, 0f, 0f);
-
+                        setTransformForTwoPlayerOnOneSpot(playerPiece_);
 
                         addPlayer(playerPiece_);
                         return true;
@@ -69,9 +60,72 @@ namespace com.impactionalGames.LudoInu
 
                
             }
+            else if(this.name == "PathPoint (7)" && this.name == "PathPoint (12)" && this.name == "PathPoint (20)" && this.name == "PathPoint (25)" && this.name == "PathPoint (33)" && this.name == "PathPoint (38)" && this.name == "PathPoint (46)" && this.name == "PathPoint (51)" && this.name != "CentreHomePoint")
+            {
+                if (playerPieces.Count == 1)
+                {
+                    setTransformForTwoPlayerOnOneSpot(playerPiece_);
+                }
+            }
             addPlayer(playerPiece_);
+            adjustPlayers();
             return true;
         }
+
+        void setTransformForTwoPlayerOnOneSpot(PlayerPiece newPlayerPiece)
+        {
+            playerPieces[0].gameObject.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
+
+
+            playerPieces[0].transform.position = playerPieces[0].transform.position + new Vector3(0.07f, 0f, 0f);
+
+            newPlayerPiece.gameObject.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
+
+
+            newPlayerPiece.transform.position = playerPieces[0].transform.position + new Vector3(-0.14f, 0f, 0f);
+        }
+
+        public void adjustPlayers()
+        {
+           
+            
+            switch (playerPieces.Count)
+            {
+                
+
+                case 0:
+                    Debug.Log("Player piece count of " + this.name + "is : " + playerPieces.Count);
+                    break;
+                case 1:
+                    playerPieces[0].gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                    Debug.Log("Player piece count of " + this.name + "is : " + playerPieces.Count);
+                    break;
+                case 2:
+                    playerPieces[0].gameObject.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
+                    playerPieces[0].transform.position = playerPieces[0].transform.position + new Vector3(0.07f, 0f, 0f);
+                    playerPieces[1].gameObject.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
+                    playerPieces[1].transform.position = playerPieces[0].transform.position + new Vector3(-0.14f, 0f, 0f);
+                    Debug.Log("Player piece count of " + this.name + "is : " + playerPieces.Count);
+                    break;
+                case 3:
+                    playerPieces[0].gameObject.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
+                    playerPieces[0].transform.position = playerPieces[0].transform.position + new Vector3(0.07f, 0f, 0f);
+                    playerPieces[1].gameObject.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
+                    playerPieces[1].transform.position = playerPieces[0].transform.position + new Vector3(-0.14f, 0f, 0f);
+                    playerPieces[2].gameObject.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
+                    Debug.Log("Player piece count of " + this.name + "is : " + playerPieces.Count);
+                    break;
+                default:
+                    Debug.Log("Player piece count of " + this.name + "is : " + playerPieces.Count);
+                    break;
+
+
+
+
+            }
+        }
+
+
 
         IEnumerator revertOnStart(PlayerPiece playerPiece_)
         {

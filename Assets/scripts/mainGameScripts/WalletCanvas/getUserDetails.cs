@@ -30,6 +30,7 @@ namespace com.impactionalGames.LudoInu
 
         IEnumerator getUserDeatails_coroutine()
         {
+            mainMenuManager.Instance.LoadingDebugText.text = "Getting Player data..";
             string phone = playerPermData.getPhoneNumber();
 
             string uri = "https://ludo-inu.herokuapp.com/api/getUserDetails/" + playerPermData.getPhoneNumber() ;
@@ -41,6 +42,7 @@ namespace com.impactionalGames.LudoInu
                 if(request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
                 {
                     Debug.Log(request.error);
+                    mainMenuManager.Instance.LoadingDebugText.text = request.error;
                 }
                 else
                 {
@@ -112,7 +114,7 @@ namespace com.impactionalGames.LudoInu
 
                     playerPermData.setTotalMatches(node[0]["Total"].ToString());
 
-                    //webMan.status.text = "get user details got called    " + playerPermData.getMoney();
+                    mainMenuManager.Instance.LoadingDebugText.text = "Profile data Loaded.";
 
                 }
             }

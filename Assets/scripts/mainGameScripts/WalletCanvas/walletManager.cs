@@ -4,31 +4,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
 
 namespace com.impactionalGames.LudoInu
 {
     public enum walletState
     {
+        loading,
+        backFromLobby,
         intial,
         profile,
         editProfile,
         settings, 
         spin, 
         ranking, 
-        store
+        store, 
+        wallet
+
     }
 
-    public class walletManager : MonoBehaviour
+    public class walletManager : genricSingletonClass<walletManager>
     {
         public GameObject walletCanvas;
-
+   
+        [Header("otherScripts")]
+        public ProfileManager profileMan;
+        public getStoreItemsApi storeMan;
+        public getLastSpinApi spinMan;
+        public getLeaderBoradApi leaderBoardMan;
+        public int coroutineCount = 0;
 
         [Header("Buttons")]
         public Button settingButton;
         public Button leaderBoardButton;
         public Button giftButton;
-        public Button spinButton;
-        public Button referAndEarnButton;
+        public GameObject spinButton;
+        //public Button referAndEarnButton;
 
 
         [Header("Panles")]
@@ -38,6 +49,7 @@ namespace com.impactionalGames.LudoInu
         public GameObject spinPanel;
         public GameObject rankingPanel;
         public GameObject storePanel;
+        public GameObject walletPanel;
 
         [Header("Currency text lists")]
         public List<Text> coinTextList = new List<Text>();
@@ -45,33 +57,22 @@ namespace com.impactionalGames.LudoInu
 
 
 
-        public static walletManager instance;
+      
         public static event Action<walletState> onWalletStateChanged;
 
-        private void Awake()
+        public override void Awake()
         {
-            if(instance == null)
-            instance = this;
+            base.Awake();
+            mainMenuManager.onMenuStateChanged += HandleMenuStateChanged;
 
-
-
-            SceneManager.sceneLoaded += onSceneLoaded;
-
-            
-            
-            
         }
 
         private void OnDestroy()
-        {
-            SceneManager.sceneLoaded -= onSceneLoaded;
+        { 
             mainMenuManager.onMenuStateChanged -= HandleMenuStateChanged;
         }
 
-        private void onSceneLoaded(Scene arg0, LoadSceneMode arg1)
-        {
-            mainMenuManager.onMenuStateChanged += HandleMenuStateChanged;
-        }
+       
 
         private void HandleMenuStateChanged(mainMenuState state)
         {
@@ -80,23 +81,31 @@ namespace com.impactionalGames.LudoInu
                 settingButton.gameObject.SetActive(false);
                 leaderBoardButton.gameObject.SetActive(false);
                 giftButton.gameObject.SetActive(false);
-                spinButton.gameObject.SetActive(false);
-                referAndEarnButton.gameObject.SetActive(false);
+                spinButton.SetActive(false);
+                //referAndEarnButton.gameObject.SetActive(false);
+
+               
             }
             else
             {
                 settingButton.gameObject.SetActive(true);
                 leaderBoardButton.gameObject.SetActive(true);
                 giftButton.gameObject.SetActive(true);
-                spinButton.gameObject.SetActive(true);
-                referAndEarnButton.gameObject.SetActive(true);
+                spinButton.SetActive(true);
+                //referAndEarnButton.gameObject.SetActive(true);
+                
 
             }
         }
 
+
+
+      
+
+
         private void Start()
         {
-            updateWalletState(walletState.intial);
+           
 
             foreach(Text item in coinTextList)
             {
@@ -111,10 +120,12 @@ namespace com.impactionalGames.LudoInu
 
         private void Update()
         {
-            if (Input.GetKey(KeyCode.Escape))
-            {
-                IntialOnClick();
-            }
+           
+                if (Input.GetKey(KeyCode.Escape))
+                {
+                    IntialOnClick();
+                }
+            
         }
 
 
@@ -126,6 +137,12 @@ namespace com.impactionalGames.LudoInu
 
             switch (State)
             {
+                case walletState.loading:
+                    handleLoadingState();
+                    break;
+                case walletState.backFromLobby:
+                    handleBackFromLobbyState();
+                    break;
                 case walletState.intial:
                     handleIntialState();
                     break;
@@ -147,131 +164,224 @@ namespace com.impactionalGames.LudoInu
                 case walletState.store:
                     handleStoreState();
                     break;
+                case walletState.wallet:
+                    handleWalletState();
+                    break;
                 
             }
 
             onWalletStateChanged?.Invoke(State);
         }
 
-       
+
+        private void handleLoadingState()
+        {
+            
+
+            profileMan.profileLoad();
+            storeMan.getAllItemsInStore();
+            spinMan.getLastSpin();
+            leaderBoardMan.getLeaderBoard();
+
+            StartCoroutine(setStateToIntial());
+
+
+        }
+
+        IEnumerator setStateToIntial()
+        {
+            yield return new WaitUntil(()=> coroutineCount == 4);
+            mainMenuManager.Instance.updateMainMenuState(mainMenuState.initial);
+            walletManager.Instance.updateWalletState(walletState.intial);
+        }
+
+        private void handleBackFromLobbyState()
+        {
+           
+        }
+
 
         private void handleIntialState()
         {
+            walletCanvas.GetComponent<Canvas>().sortingOrder = -1;
+
             profilePanel.SetActive(false);    
             editProfilePanel.SetActive(false);
             settingsPanel.SetActive(false);
             spinPanel.SetActive(false);
             rankingPanel.SetActive(false);
             storePanel.SetActive(false);
+            walletPanel.SetActive(false);
 
         }
 
         private void handleProfileState()
         {
+            walletCanvas.GetComponent<Canvas>().sortingOrder = 3;
+
             profilePanel.SetActive(true);
             editProfilePanel.SetActive(false);
             settingsPanel.SetActive(false);
             spinPanel.SetActive(false);
             rankingPanel.SetActive(false);
             storePanel.SetActive(false);
+            walletPanel.SetActive(false);
 
         }
  
         private void handleEditProfileState()
         {
+            walletCanvas.GetComponent<Canvas>().sortingOrder = 3;
+
             profilePanel.SetActive(false);
             editProfilePanel.SetActive(true);
             settingsPanel.SetActive(false);
             spinPanel.SetActive(false);
             rankingPanel.SetActive(false);
             storePanel.SetActive(false);
+            walletPanel.SetActive(false);
 
         }
         private void handleSettingsState()
         {
+            walletCanvas.GetComponent<Canvas>().sortingOrder = 3;
+
+
             profilePanel.SetActive(false);
             editProfilePanel.SetActive(false);
             settingsPanel.SetActive(true);
             spinPanel.SetActive(false);
             rankingPanel.SetActive(false);
             storePanel.SetActive(false);
+            walletPanel.SetActive(false);
 
 
         }
         private void handleSpinState()
         {
+            walletCanvas.GetComponent<Canvas>().sortingOrder = 3;
+
             profilePanel.SetActive(false);
             editProfilePanel.SetActive(false);
             settingsPanel.SetActive(false);
             spinPanel.SetActive(true);
             rankingPanel.SetActive(false);
             storePanel.SetActive(false);
+            walletPanel.SetActive(false);
+
+            spinPanel.GetComponent<spineManager>().ShowWheelToPlayer();
 
         }
 
         private void handleRankingState()
         {
+            walletCanvas.GetComponent<Canvas>().sortingOrder = 3;
+
             profilePanel.SetActive(false);
             editProfilePanel.SetActive(false);
             settingsPanel.SetActive(false);
             spinPanel.SetActive(false);
             rankingPanel.SetActive(true); 
             storePanel.SetActive(false);
+            walletPanel.SetActive(false);
 
-            rankingPanel.GetComponent<getLeaderBoradApi>().getLeaderBoard();
+
         }
 
         private void handleStoreState()
         {
+            walletCanvas.GetComponent<Canvas>().sortingOrder = 3;
+
             profilePanel.SetActive(false);
             editProfilePanel.SetActive(false);
             settingsPanel.SetActive(false);
             spinPanel.SetActive(false);
             rankingPanel.SetActive(false);
             storePanel.SetActive(true);
+            walletPanel.SetActive(false);
         }
 
+        private void handleWalletState()
+        {
+            walletCanvas.GetComponent<Canvas>().sortingOrder = 3;
+
+            profilePanel.SetActive(false);
+            editProfilePanel.SetActive(false);
+            settingsPanel.SetActive(false);
+            spinPanel.SetActive(false);
+            rankingPanel.SetActive(false);
+            storePanel.SetActive(false);
+            walletPanel.SetActive(true);
+        }
+
+        //FOR FLUTTER CALLS
         public void IntialOnClick()
         {
-           walletManager.instance.updateWalletState(walletState.intial);
+           walletManager.Instance.updateWalletState(walletState.intial);
         }
+
+        public void AddMoneyOnClick()
+        {
+            //walletManager.instance.updateWalletState(walletState.addMoney);
+            Debug.Log("sent message to fullter");
+            UnityMessageManager.Instance.SendMessageToFlutter("AddMoney");
+        }
+
+        public void WithdrawOnClick()
+        {
+            //walletManager.instance.updateWalletState(walletState.withdraw);
+            UnityMessageManager.Instance.SendMessageToFlutter("Withdrawl");
+            Debug.Log("withdraw called");
+
+        }
+
+
+        //FOR FLUTTER CALLS END
+
+
+
 
         public void ProfileOnClick()
         {
-            walletManager.instance.updateWalletState(walletState.profile);
+            walletManager.Instance.updateWalletState(walletState.profile);
             Debug.Log("profile button called");
         }
 
 
         public void EditProflieOnClick()
         {
-            walletManager.instance.updateWalletState(walletState.editProfile);
+            walletManager.Instance.updateWalletState(walletState.editProfile);
         }
 
         public void SettingsOnClick()
         {
-            walletManager.instance.updateWalletState(walletState.settings);
+            walletManager.Instance.updateWalletState(walletState.settings);
         }
 
         public void SpinOnClick()
         {
-            walletManager.instance.updateWalletState(walletState.spin);
+            walletManager.Instance.updateWalletState(walletState.spin);
         }
 
         public void RankingOnClick()
         {
-            walletManager.instance.updateWalletState(walletState.ranking);
+            walletManager.Instance.updateWalletState(walletState.ranking);
         }
 
         public void StoreOnClick()
         {
-            walletManager.instance.updateWalletState(walletState.store);
+            walletManager.Instance.updateWalletState(walletState.store);
         }
 
         public void ThemeOnClick()
         {
-            mainMenuManager.instance.updateMainMenuState(mainMenuState.themes);
-            walletManager.instance.updateWalletState(walletState.intial);
+            mainMenuManager.Instance.updateMainMenuState(mainMenuState.themes);
+            walletManager.Instance.updateWalletState(walletState.intial);
+        }
+
+        public void WalletOnClick()
+        {
+            walletManager.Instance.updateWalletState(walletState.wallet);
         }
 
     }

@@ -38,8 +38,9 @@ namespace com.impactionalGames.LudoInu
             if (PhotonNetwork.IsConnected)
             {
                 if(PhotonNetwork.CurrentLobby != null && PhotonNetwork.CurrentRoom != null)
-                Debug.Log(PhotonNetwork.CurrentLobby.Name + " is the lobby and  the room is " + PhotonNetwork.CurrentRoom.Name);
-                mainMenuManager.instance.updateMainMenuState(mainMenuState.initial);
+                Debug.Log(PhotonNetwork.CurrentLobby.Name + " is the lobby and  the room is " + PhotonNetwork.CurrentRoom.Name); 
+                mainMenuManager.Instance.updateMainMenuState(mainMenuState.backFromLobby);
+               
             }
             else
             {
@@ -55,7 +56,8 @@ namespace com.impactionalGames.LudoInu
 
             //have to wait for this message in order to use the create button
             Debug.Log("the server has made or connected, now we can create room");
-            mainMenuManager.instance.updateMainMenuState(mainMenuState.initial);
+            mainMenuManager.Instance.LoadingDebugText.text = "Connected.";
+            walletManager.Instance.updateWalletState(walletState.loading);
 
         }
 

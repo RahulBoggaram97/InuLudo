@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 namespace com.impactionalGames.LudoInu
 {
     public enum mainMenuState
     {
         loading,
+        backFromLobby,
         initial,
         online,
         withFriends,
@@ -17,9 +20,9 @@ namespace com.impactionalGames.LudoInu
         themes
     }
 
-    public class mainMenuManager : MonoBehaviour
+    public class mainMenuManager : genricSingletonClass<mainMenuManager>
     {
-        public static mainMenuManager instance;
+      
         public static mainMenuState state;
         public static event Action<mainMenuState> onMenuStateChanged;
 
@@ -27,6 +30,8 @@ namespace com.impactionalGames.LudoInu
         public GameObject MainMenuCanvas;
         public GameObject _camera;
         public GameObject eventSystem;
+
+        public Image backFromLobbyFadeInImage;
 
         [Header("Panles")]
      
@@ -37,6 +42,8 @@ namespace com.impactionalGames.LudoInu
         public GameObject WithFriendsPanel;
         public GameObject themePanel;
 
+        public GameObject extraCanvaseForBg;
+
 
 
         [Header("Scenes")]
@@ -44,32 +51,34 @@ namespace com.impactionalGames.LudoInu
         public string walletUiSceneName;
         public string botOfflineSceneName;
 
-
-        private void Awake()
-        {
-            
-            if(instance == null)
-            instance = this;
-            SceneManager.LoadSceneAsync(walletUiSceneName, LoadSceneMode.Additive);
-
-
-
-        }
+        [Header("DebugText")]
+        public TextMeshProUGUI LoadingDebugText;
 
         
 
+        public override void Awake()
+        {
+            base.Awake();
+            
+        }
+
+
+
         private void Start()
         {
+            SceneManager.LoadSceneAsync(walletUiSceneName, LoadSceneMode.Additive);
             updateMainMenuState(mainMenuState.loading);
             
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                updateMainMenuState(mainMenuState.initial);
-            }
+            
+                if (Input.GetKeyDown(KeyCode.Escape) && MainMenuCanvas.activeSelf == true)
+                {
+                    updateMainMenuState(mainMenuState.initial);
+                }
+            
         }
 
         public void updateMainMenuState(mainMenuState newState)
@@ -80,6 +89,9 @@ namespace com.impactionalGames.LudoInu
             {
                 case mainMenuState.loading:
                     handleLoadingState();
+                    break;
+                case mainMenuState.backFromLobby:
+                    handleBackFromLobbyState();
                     break;
                 case mainMenuState.initial:
                     handleIntialState();
@@ -111,13 +123,53 @@ namespace com.impactionalGames.LudoInu
             MainMenuCanvas.SetActive(true);
             _camera.SetActive(true);
             eventSystem.SetActive(true);
-            
+            extraCanvaseForBg.SetActive(true);
+            extraCanvaseForBg.GetComponent<Canvas>().sortingOrder = 1;
+
             loadingPanel.SetActive(true);
             mainMenuPanel.SetActive(false);
             OnlinePanel.SetActive(false);
             WithFriendsPanel.SetActive(false);
 
             themePanel.SetActive(false);
+
+            backFromLobbyFadeInImage.gameObject.SetActive(false);
+            
+        }
+
+
+        private void handleBackFromLobbyState()
+        {
+            MainMenuCanvas.SetActive(true);
+
+           
+            mainMenuPanel.SetActive(false);
+            OnlinePanel.SetActive(false);
+            WithFriendsPanel.SetActive(false);
+
+
+
+            extraCanvaseForBg.SetActive(true);
+            extraCanvaseForBg.GetComponent<Canvas>().sortingOrder = 1;
+
+            backFromLobbyFadeInImage.gameObject.SetActive(true);
+
+            //walletManager.Instance.updateWalletState(walletState.backFromLobby);
+            loadingPanel.SetActive(true);
+
+          
+            _camera.SetActive(false);
+            eventSystem.SetActive(false);
+          
+
+            StartCoroutine(setObjectActiveAfterLobbyback());
+        }
+
+        IEnumerator setObjectActiveAfterLobbyback()
+        {
+            yield return new WaitForFixedUpdate();
+
+            //mainMenuManager.Instance.updateMainMenuState(mainMenuState.initial);
         }
 
         private void handleIntialState()
@@ -125,6 +177,8 @@ namespace com.impactionalGames.LudoInu
             MainMenuCanvas.SetActive(true);
             _camera.SetActive(true);
             eventSystem.SetActive(true);
+            extraCanvaseForBg.SetActive(true);
+            extraCanvaseForBg.GetComponent<Canvas>().sortingOrder = -5;
 
             loadingPanel.SetActive(false);
             mainMenuPanel.SetActive(true);
@@ -132,6 +186,9 @@ namespace com.impactionalGames.LudoInu
             WithFriendsPanel.SetActive(false);
 
             themePanel.SetActive(false);
+
+            backFromLobbyFadeInImage.gameObject.SetActive(false);
+
         }
 
         private void handleOnlineState()
@@ -139,6 +196,9 @@ namespace com.impactionalGames.LudoInu
             MainMenuCanvas.SetActive(true);
             _camera.SetActive(true);
             eventSystem.SetActive(true);
+            extraCanvaseForBg.SetActive(true);
+            extraCanvaseForBg.GetComponent<Canvas>().sortingOrder = -5;
+
 
             loadingPanel.SetActive(false);
             mainMenuPanel.SetActive(false);
@@ -147,6 +207,8 @@ namespace com.impactionalGames.LudoInu
 
             themePanel.SetActive(false);
 
+            backFromLobbyFadeInImage.gameObject.SetActive(false);
+
         }
 
         private void handleWithFriendsState()
@@ -154,6 +216,8 @@ namespace com.impactionalGames.LudoInu
             MainMenuCanvas.SetActive(true);
             _camera.SetActive(true);
             eventSystem.SetActive(true);
+            extraCanvaseForBg.SetActive(true);
+            extraCanvaseForBg.GetComponent<Canvas>().sortingOrder = -5;
 
 
             loadingPanel.SetActive(false);
@@ -163,6 +227,8 @@ namespace com.impactionalGames.LudoInu
 
             themePanel.SetActive(false);
 
+            backFromLobbyFadeInImage.gameObject.SetActive(false);
+
         }
 
         private void handleOfflineState()
@@ -171,18 +237,23 @@ namespace com.impactionalGames.LudoInu
             MainMenuCanvas.SetActive(false);
             _camera.SetActive(false);
             eventSystem.SetActive(false);
+            extraCanvaseForBg.SetActive(false);
 
-            themePanel.SetActive(false);
-
+            backFromLobbyFadeInImage.gameObject.SetActive(false);
         }
 
 
         private void handleBotOfflineState()
         {
-            SceneManager.LoadScene(botOfflineSceneName);
+            SceneManager.LoadSceneAsync(botOfflineSceneName, LoadSceneMode.Additive);
+            Debug.Log("ascynfuntiongotcalled");
 
-            themePanel.SetActive(false);
+            MainMenuCanvas.SetActive(false);
+            _camera.SetActive(false);
+            eventSystem.SetActive(false);
+            extraCanvaseForBg.SetActive(false);
 
+            backFromLobbyFadeInImage.gameObject.SetActive(false);
         }
 
         private void handleThemeState()
@@ -190,48 +261,53 @@ namespace com.impactionalGames.LudoInu
             MainMenuCanvas.SetActive(true);
             _camera.SetActive(true);
             eventSystem.SetActive(true);
+            extraCanvaseForBg.SetActive(true);
+            extraCanvaseForBg.GetComponent<Canvas>().sortingOrder = -5;
 
             loadingPanel.SetActive(false);
             mainMenuPanel.SetActive(false);
-            OnlinePanel.SetActive(true);
+            OnlinePanel.SetActive(false);
             WithFriendsPanel.SetActive(false);
 
             themePanel.SetActive(true);
+
+            backFromLobbyFadeInImage.gameObject.SetActive(false);
+
         }
 
         public void LoadingOnClick()
         {
-            mainMenuManager.instance.updateMainMenuState(mainMenuState.loading);
+            mainMenuManager.Instance.updateMainMenuState(mainMenuState.loading);
         }
 
         public void IntialOnClick()
         {
-            mainMenuManager.instance.updateMainMenuState(mainMenuState.initial);
+            mainMenuManager.Instance.updateMainMenuState(mainMenuState.initial);
         }
 
         public void OnlineOnClick()
         {
-            mainMenuManager.instance.updateMainMenuState(mainMenuState.online);
+            mainMenuManager.Instance.updateMainMenuState(mainMenuState.online);
         }
 
         public void WithFriendsOnClick()
         {
-            mainMenuManager.instance.updateMainMenuState(mainMenuState.withFriends);
+            mainMenuManager.Instance.updateMainMenuState(mainMenuState.withFriends);
         }
 
         public void OfflineOnClick()
         {
-            mainMenuManager.instance.updateMainMenuState(mainMenuState.offline);
+            mainMenuManager.Instance.updateMainMenuState(mainMenuState.offline);
         }
 
         public void BotOfflineOnClick()
         {
-            mainMenuManager.instance.updateMainMenuState(mainMenuState.computerbot);
+            mainMenuManager.Instance.updateMainMenuState(mainMenuState.computerbot);
         }
 
         public void ThemeOnClick()
         {
-            mainMenuManager.instance.updateMainMenuState(mainMenuState.themes);
+            mainMenuManager.Instance.updateMainMenuState(mainMenuState.themes);
         }
 
 

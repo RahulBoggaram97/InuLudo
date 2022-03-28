@@ -5,6 +5,9 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
+using System;
 
 namespace com.impactionalGames.LudoInu
 {
@@ -36,7 +39,17 @@ namespace com.impactionalGames.LudoInu
         public void winStarterMethod()
         {
             checkWhichLobby();
+            
+
+
+
+
         }
+
+        
+
+
+
 
         void checkWhichLobby()
         {

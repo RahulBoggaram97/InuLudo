@@ -13,9 +13,13 @@ namespace com.impactionalGames.LudoInu
 
     public class flutterManager : MonoBehaviour, IEventSystemHandler
     {
+        public createNewUser createUser;
+
+
         public void passPhoneNumberToUnity(String phoneNum)
         {
-            playerPermData.setPhoneNumber(phoneNum);    
+            playerPermData.setPhoneNumber(phoneNum);
+            createUser.createUser();
         }  
     }
 }

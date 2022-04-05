@@ -22,13 +22,13 @@ namespace com.impactionalGames.LudoInu
         //    authManager.loginStateChanged -= HandleOnAuthenticate;
         //}
 
-        private void HandleOnAuthenticate(loginState state)
-        {
-            if(state == loginState.authenticated)
-            {
-                createUser();
-            }
-        }
+        //private void HandleOnAuthenticate(loginState state)
+        //{
+        //    if(state == loginState.authenticated)
+        //    {
+        //        createUser();
+        //    }
+        //}
 
         public void createUser() => StartCoroutine(createNewUser_Coroutine());
 
@@ -40,7 +40,7 @@ namespace com.impactionalGames.LudoInu
 
             string url = "https://ludo-inu.herokuapp.com/api/createUser";
             WWWForm form = new WWWForm();
-            form.AddField("Phone", "+919876543210");
+            form.AddField("Phone", playerPermData.getPhoneNumber());
 
             using (UnityWebRequest request = UnityWebRequest.Post(url, form))
             {

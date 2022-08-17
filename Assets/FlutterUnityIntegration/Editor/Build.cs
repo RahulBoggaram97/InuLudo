@@ -137,7 +137,7 @@ public class Build : EditorWindow
         if (Directory.Exists(path))
             Directory.Delete(path, true);
 
-        EditorUserBuildSettings.iOSBuildConfigType = iOSBuildType.Release;
+        EditorUserBuildSettings.iOSXcodeBuildConfig = XcodeBuildConfig.Release;
 
         var options = BuildOptions.AcceptExternalModificationsToPlayer;
         var report = BuildPipeline.BuildPlayer(

@@ -71,8 +71,7 @@ namespace com.impactionalGames.LudoInu
             for (int i = 0; i < stringchars.Length; i++)
             {
                 stringchars[i] = chars[Random.Range(0, chars.Length - 1)];
-                Debug.Log(i);
-                Debug.Log(chars[i]);
+               
 
             }
 

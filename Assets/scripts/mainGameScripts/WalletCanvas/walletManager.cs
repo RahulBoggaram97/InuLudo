@@ -176,15 +176,17 @@ namespace com.impactionalGames.LudoInu
 
         private void handleLoadingState()
         {
-            
 
-            profileMan.profileLoad();
-            storeMan.getAllItemsInStore();
-            spinMan.getLastSpin();
-            leaderBoardMan.getLeaderBoard();
 
-            StartCoroutine(setStateToIntial());
+            //profileMan.profileLoad();
+            //storeMan.getAllItemsInStore();
+            //spinMan.getLastSpin();
+            //leaderBoardMan.getLeaderBoard();
 
+            //StartCoroutine(setStateToIntial());
+
+            mainMenuManager.Instance.updateMainMenuState(mainMenuState.initial);
+            walletManager.Instance.updateWalletState(walletState.intial);
 
         }
 

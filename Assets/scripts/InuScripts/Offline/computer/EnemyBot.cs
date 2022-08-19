@@ -18,21 +18,18 @@ namespace com.impactionalGames.LudoInu
             
         }
 
-       public async  void rollDice()
+       public  void rollDice()
         {
-           await dice.preRollDice();
+            dice.preRollDice();
             pseudoMoveAllPiecesAvailable();
         }
 
         void pseudoMoveAllPiecesAvailable()
         {
-
-
             Debug.Log(gm.numOfStepsToMove);
 
             if (gm.numOfStepsToMove == 6)
-            {
-                Debug.Log("6 come");
+            {               
                 if (checkIfAllPeiceNOTOut())
                 {
                     openPiece();
@@ -45,24 +42,12 @@ namespace com.impactionalGames.LudoInu
                 gm.RollingDiceManager();
                 return;
             }
-
-
             else
             {
-                Debug.Log("6 not come");
-
                 if (!checkIfZeroPeiceOut())
-                {
-                    Debug.Log("1 peice is out");
                     checkWhichPieceCut();
-                }
                 else
-                {
-
-                    gm.RollingDiceManager();
-
-                }
-            
+                    gm.RollingDiceManager();  
             }
 
             
@@ -116,11 +101,8 @@ namespace com.impactionalGames.LudoInu
                     }
                 }
 
-
                 if (!gm.rolleddice.hasMoved)
-                {
                     checkIfCanFinish();
-                }
             }
 
         }
@@ -141,10 +123,7 @@ namespace com.impactionalGames.LudoInu
                 }
 
                 if (!gm.rolleddice.hasMoved)
-                {
                     moveTheFathestPiece();
-                    
-                }
             }    
 
         }

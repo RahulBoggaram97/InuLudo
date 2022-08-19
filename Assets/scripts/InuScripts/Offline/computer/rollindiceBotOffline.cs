@@ -9,7 +9,7 @@ namespace com.impactionalGames.LudoInu
     public class rollindiceBotOffline : MonoBehaviour
     {
         public gameManagerBotOffline gm;
-
+        [Header("Dice artworks")]
         [SerializeField] int numberGot;
         [SerializeField] GameObject rollinDiceAnime;
         [SerializeField] Sprite[] diceSprites;
@@ -27,65 +27,55 @@ namespace com.impactionalGames.LudoInu
 
 
 
-        public async Task preRollDice()
+        public void preRollDice()
         {
-            
+             if (!this.hasRolled && !this.hasMoved)
+             {
+                Debug.Log(this.name + " has rolled ");
 
-                if (!this.hasRolled && !this.hasMoved)
-                {
-
-                Debug.Log(this.name);
-
-                await rollDice();
-
-                
-
-
-                    gm.numOfStepsToMove = numberGot + 1;
-
-
-
-                    gm.rolleddice = this;
-                    this.hasRolled = true;
-                transferIfNoOutPlayers();
-
-
-                gm.RollingDiceManager();
-
-                
-                //changetocallphoton
-
-                
-                
-                }
-                else
-                {
-                    Debug.Log("has rolled value:" + this.hasRolled + "     " +
+                StartCoroutine(rollDice());
+             }
+             else
+             {
+                Debug.Log("has rolled value:" + this.hasRolled + "     " +
                         "has moved value:" + this.hasMoved);
-                }
+             }
             
 
 
         }
 
 
-        async Task rollDice()
+        IEnumerator rollDice()
         {
             numberGot = Random.Range(0, 6);
             dicRender.gameObject.SetActive(false);
             rollinDiceAnime.SetActive(true);
             
-                Debug.Log("green dice has been rolled");
+            Debug.Log("green dice has been rolled");
 
 
-            await Task.Delay(1000);
+            yield return new WaitForSeconds(1);
 
             rollinDiceAnime.SetActive(false);
             dicRender.gameObject.SetActive(true);
             dicRender.sprite = diceSprites[numberGot];
 
-            await Task.Delay(1000);
+            yield return new WaitForSeconds(1);
 
+            manageDiceVarAffterRoll();
+
+            transferIfNoOutPlayers();
+
+            gm.RollingDiceManager();
+
+        }
+
+        void manageDiceVarAffterRoll()
+        {
+            gm.numOfStepsToMove = numberGot + 1;
+            gm.rolleddice = this;
+            this.hasRolled = true;
         }
 
 

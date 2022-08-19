@@ -76,7 +76,7 @@ namespace com.impactionalGames.LudoInu
 
         public void RollingDiceManager()
         {
-
+            //if no 6 is rolled or a piece is cut or you reach the center
             if (transferDice && rolleddice.hasMoved)
             {
                 rolleddice.hasMoved = false;
@@ -85,6 +85,7 @@ namespace com.impactionalGames.LudoInu
                
                 Debug.Log("hasMoved set to false");
             }
+            //if 6 is rolled or a piece is cut or you reach the center
             else if (selfDice)
             {
 
@@ -105,11 +106,8 @@ namespace com.impactionalGames.LudoInu
 
         void shiftDice()
         {
-
-
             if (rolleddice == rollingDiceList[0])
             {
-                Debug.Log("shiftDiceCalled");
                 rollingDiceList[0].gameObject.SetActive(false);
                 rollingDiceList[1].gameObject.SetActive(true);
                 greenBot.rollDice();

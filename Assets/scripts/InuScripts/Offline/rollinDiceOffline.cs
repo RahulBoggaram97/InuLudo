@@ -27,45 +27,43 @@ namespace com.impactionalGames.LudoInu {
         async void preRollDice()
         {
             if (!this.hasRolled && !this.hasMoved)
-            {
-
-                await rollDice();
-
-
-                gm.numOfStepsToMove = numberGot + 1;
-
-                
-
-                gm.rolleddice = this;
-                this.hasRolled = true;
-                transferIfNoOutPlayers();
-                //changetocallphoton
-                gm.RollingDiceManager();
-            }
+                StartCoroutine(rollDice());
             else
-            {
                 Debug.Log("has rolled value:" + this.hasRolled + "     " +
                     "has moved value:" + this.hasMoved);
-            }
-
-
-
         }
 
 
-        async Task rollDice()
+        IEnumerator rollDice()
         {
             numberGot = Random.Range(0, 6);
             dicRender.gameObject.SetActive(false);
             rollinDiceAnime.SetActive(true);
-            await Task.Delay(1000);
+            yield return new WaitForSeconds(1);
 
             rollinDiceAnime.SetActive(false);
             dicRender.gameObject.SetActive(true);
             dicRender.sprite = diceSprites[numberGot];
 
+            yield return new WaitForEndOfFrame();
+
+            afterRoll();
+
         }
 
+        void afterRoll()
+        {
+
+            gm.numOfStepsToMove = numberGot + 1;
+
+
+
+            gm.rolleddice = this;
+            this.hasRolled = true;
+            transferIfNoOutPlayers();
+            //changetocallphoton
+            gm.RollingDiceManager();
+        }
 
 
         void transferIfNoOutPlayers()

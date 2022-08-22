@@ -57,31 +57,14 @@ namespace com.impactionalGames.LudoInu
         #endregion
 
         //set the info after or befor rolling dice
-        async void preRollDice()
+        public void preRollDice()
         {
             if (!this.hasRolled && !this.hasMoved)
-            {
-
-                await rollDice();
-
-
-                gm.numOfStepsToMove = numberGot + 1;
-
-                setScore(gm.numOfStepsToMove);  
-
-                gm.rolleddice = this;
-                this.hasRolled = true;
-                //changetocallphoton
-                gm.rollingDiceManagerCaller();
-            }
+                StartCoroutine(rollDice());
             else
-            {
                 Debug.Log("has rolled value:" + this.hasRolled + "" +
                     "has moved value:" + this.hasMoved);
-            }
-
-            
-
+          
         }
 
         //to set the score
@@ -94,16 +77,33 @@ namespace com.impactionalGames.LudoInu
 
 
         //changeTheway dice roll here
-        async Task rollDice()
+        IEnumerator rollDice()
         {
             dicRender.gameObject.SetActive(false);
             rollinDiceAnime.SetActive(true);
-            await Task.Delay(1000);
+            yield return new WaitForSeconds(1);
 
             rollinDiceAnime.SetActive(false);
             dicRender.gameObject.SetActive(true);
             dicRender.sprite = diceSprites[numberGot];
 
+            yield return new WaitForEndOfFrame();
+
+            afterRoll();
+
+        }
+
+        void afterRoll()
+        {
+
+            gm.numOfStepsToMove = numberGot + 1;
+
+            setScore(gm.numOfStepsToMove);
+
+            gm.rolleddice = this;
+            this.hasRolled = true;
+            //changetocallphoton
+            gm.rollingDiceManagerCaller();
         }
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

@@ -18,11 +18,20 @@ namespace com.impactionalGames.LudoInu
             
         }
 
-       public  void rollDice()
+        public void rollDice()
+        {
+            StartCoroutine(rollDice_Coroutine());
+        }
+
+       public  IEnumerator rollDice_Coroutine()
         {
             dice.preRollDice();
+            yield return new WaitForSeconds(2.01f);
+            yield return new WaitForEndOfFrame();
             pseudoMoveAllPiecesAvailable();
         }
+
+
 
         void pseudoMoveAllPiecesAvailable()
         {

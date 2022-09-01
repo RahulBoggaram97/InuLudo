@@ -79,11 +79,15 @@ namespace com.impactionalGames.LudoInu
             //if no 6 is rolled or a piece is cut or you reach the center
             if (transferDice && rolleddice.hasMoved)
             {
+
                 rolleddice.hasMoved = false;
                 rolleddice.hasRolled = false;
+
+                Debug.Log(rolleddice.name + " hasMoved = false && hasRolled = false, shifting the dice");
+
                 shiftDice();
-               
-                Debug.Log("hasMoved set to false");
+
+
             }
             //if 6 is rolled or a piece is cut or you reach the center
             else if (selfDice)
@@ -93,12 +97,26 @@ namespace com.impactionalGames.LudoInu
                 rolleddice.hasMoved = false;
                 rolleddice.hasRolled = false;
                 //numOfStepsToMove = 0;
-                Debug.Log("rooled dice in dice mangaer, has moved is set to: " + rolleddice.hasMoved + " the dice is :  " + rolleddice.ToString());
+                Debug.Log(rolleddice.name + " has self dice active, hasMoved = " + rolleddice.hasMoved + " hasRolled = " + rolleddice.hasRolled);
+
+
             }
-            else
+            else 
             {
-                return;
+                Debug.Log( rolleddice.name +  " transferDice = " + transferDice + " hasMoved  = " +  rolleddice.hasMoved + " hasRolled = " + rolleddice.hasRolled + " selfDice " + selfDice);
+
+                //check if hasnt moved
+                if(!rolleddice.hasMoved && rolleddice.hasRolled)
+                {
+                    if (!rolleddice.name.Contains("red"))
+                    {
+                        moveBots();
+                    }
+                }
+                //check if its not red
+                //pesudomove
             }
+            
 
         }
 
@@ -132,5 +150,23 @@ namespace com.impactionalGames.LudoInu
                 Debug.Log("red dice can move");
             }
         }
+
+        void moveBots()
+        {
+            if (rolleddice.name.Contains("green"))
+            {
+                greenBot.pseudoMoveAllPiecesAvailable();
+            }
+            if (rolleddice.name.Contains("yellow"))
+            {
+                yellowBot.pseudoMoveAllPiecesAvailable();
+            }
+            if (rolleddice.name.Contains("blue"))
+            {
+                blueBot.pseudoMoveAllPiecesAvailable();
+            }
+        }
+
+       
     }
 }

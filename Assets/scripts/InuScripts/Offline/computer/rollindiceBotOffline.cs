@@ -31,7 +31,7 @@ namespace com.impactionalGames.LudoInu
         {
              if (!this.hasRolled && !this.hasMoved)
              {
-                Debug.Log(this.name + " has rolled ");
+                Debug.Log(this.name + " is rolling ");
 
                 StartCoroutine(rollDice());
              }
@@ -45,14 +45,16 @@ namespace com.impactionalGames.LudoInu
 
         }
 
-
+        
         IEnumerator rollDice()
         {
             numberGot = Random.Range(0, 6);
+
+
             dicRender.gameObject.SetActive(false);
             rollinDiceAnime.SetActive(true);
             
-            Debug.Log("green dice has been rolled");
+            
 
 
             yield return new WaitForSeconds(1);

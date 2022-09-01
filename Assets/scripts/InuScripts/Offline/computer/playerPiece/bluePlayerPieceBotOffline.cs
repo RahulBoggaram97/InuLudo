@@ -40,31 +40,30 @@ namespace com.impactionalGames.LudoInu
 
 
 
-        public override void checkWhichPieceCut()
+        public override bool checkWhichPieceCut()
         {
             
                 for (int i = 0; i < gm.blueOutPlayers; i++)
                 {
-                    if (playerPieces[i].pathsParent.bluePathPoints[playerPieces[i].numberOfStepsAlreadyMoved + gm.numOfStepsToMove].playerPieces.Count != 0)
+                Debug.Log(this.name + " numOfStepsAlreadyMoved :" +  playerPieces[i].numberOfStepsAlreadyMoved +  ", numOfStepsToMove : " + gm.numOfStepsToMove);
+                    if (playerPieces[i].pathsParent.bluePathPoints[playerPieces[i].numberOfStepsAlreadyMoved + gm.numOfStepsToMove - 1].playerPieces.Count != 0)
                     {
                         playerPieces[i].MoveSteps(playerPieces[i].pathsParent.bluePathPoints);
-                        gm.rolleddice.hasMoved = true;
-                        rollDice();
-                        return;
+                    gm.rolleddice.hasMoved = false;
+                    gm.rolleddice.hasRolled = false;
+                    Debug.Log(gm.rolleddice.name + " cut a piece, rolling it again");
+                    rollDice();
+                        return true;
                     }
                 }
 
-
-                if (!gm.rolleddice.hasMoved)
-                {
-                    checkIfCanFinish();
-                }
+            return false;
             
 
         }
 
 
-        public override void checkIfCanFinish()
+        public override bool checkIfCanFinish()
         {
             
                 for (int i = 0; i < gm.blueOutPlayers; i++)
@@ -73,15 +72,13 @@ namespace com.impactionalGames.LudoInu
                     if (playerPieces[i].numberOfStepsAlreadyMoved + gm.numOfStepsToMove == 56)
                     {
                         playerPieces[i].MoveSteps(playerPieces[i].pathsParent.bluePathPoints);
-                        gm.rolleddice.hasMoved = true;
-                    }
+                    gm.rolleddice.hasMoved = false;
+                    gm.rolleddice.hasRolled = false;
+                    return true;
+                }
                 }
 
-                if (!gm.rolleddice.hasMoved)
-                {
-                    moveTheFathestPiece();
-
-                }
+            return false;
             
 
         }
@@ -106,10 +103,14 @@ namespace com.impactionalGames.LudoInu
                     if (maxNumOfStepsAlreadyMoved == playerPieces[i].numberOfStepsAlreadyMoved)
                     {
 
+                    if (!gm.rolleddice.hasMoved)
+                    {
 
                         playerPieces[i].canMove = true;
                         gm.rolleddice.hasMoved = true;
                         playerPieces[i].MoveSteps(playerPieces[i].pathsParent.bluePathPoints);
+                        Debug.Log("farthest peice moved");
+                    }
 
                         //check if there is any other peice to move
 

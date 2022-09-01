@@ -111,7 +111,7 @@ namespace com.impactionalGames.LudoInu
                 {
                     if (pathObjectParent.BasePoints[i].playerPieces.Count == 0)
                     {
-                        addPlayer(playerPiece_);
+                        pathObjectParent.BasePoints[i].addPlayer(playerPiece_);
                         return i;
                     }
                 }
@@ -122,7 +122,7 @@ namespace com.impactionalGames.LudoInu
                 {
                     if (pathObjectParent.BasePoints[i].playerPieces.Count == 0)
                     {
-                        addPlayer(playerPiece_);
+                        pathObjectParent.BasePoints[i].addPlayer(playerPiece_);
                         return i;
                     }
                 }
@@ -133,7 +133,7 @@ namespace com.impactionalGames.LudoInu
                 {
                     if (pathObjectParent.BasePoints[i].playerPieces.Count == 0)
                     {
-                        addPlayer(playerPiece_);
+                        pathObjectParent.BasePoints[i].addPlayer(playerPiece_);
                         return i;
                     }
                 }
@@ -144,7 +144,7 @@ namespace com.impactionalGames.LudoInu
                 {
                     if (pathObjectParent.BasePoints[i].playerPieces.Count == 0)
                     {
-                        addPlayer(playerPiece_);
+                        pathObjectParent.BasePoints[i].addPlayer(playerPiece_);
                         return i;
                     }
                 }

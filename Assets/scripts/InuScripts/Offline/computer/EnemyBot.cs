@@ -20,22 +20,24 @@ namespace com.impactionalGames.LudoInu
 
         public void rollDice()
         {
-            StartCoroutine(rollDice_Coroutine());
+            //StartCoroutine(rollDice_Coroutine());
+            dice.preRollDice();
         }
 
        public  IEnumerator rollDice_Coroutine()
         {
             dice.preRollDice();
-            yield return new WaitForSeconds(2.01f);
-            yield return new WaitForEndOfFrame();
-            pseudoMoveAllPiecesAvailable();
+            yield return new WaitForSeconds(2.05f);
+            //yield return new WaitForEndOfFrame();
+
+            //pseudoMoveAllPiecesAvailable();
         }
 
 
 
-        void pseudoMoveAllPiecesAvailable()
+        public void pseudoMoveAllPiecesAvailable()
         {
-            Debug.Log(gm.numOfStepsToMove);
+            Debug.Log(gm.numOfStepsToMove + " rolled by " + gm.rolleddice.name);
 
             if (gm.numOfStepsToMove == 6)
             {               
@@ -46,7 +48,11 @@ namespace com.impactionalGames.LudoInu
                 }
                 else
                 {
-                    checkWhichPieceCut();
+
+                    if (!checkWhichPieceCut())
+                      if(!checkIfCanFinish())
+                            moveTheFathestPiece();
+
                 }
                 gm.RollingDiceManager();
                 return;
@@ -54,7 +60,11 @@ namespace com.impactionalGames.LudoInu
             else
             {
                 if (!checkIfZeroPeiceOut())
-                    checkWhichPieceCut();
+                {
+                    if (!checkWhichPieceCut())
+                        if (!checkIfCanFinish())
+                            moveTheFathestPiece();
+                }
                 else
                     gm.RollingDiceManager();  
             }
@@ -95,7 +105,7 @@ namespace com.impactionalGames.LudoInu
         
 
 
-        public virtual void checkWhichPieceCut()
+        public virtual bool checkWhichPieceCut()
         {
             if (dice.name.Contains("green"))
             {
@@ -104,20 +114,23 @@ namespace com.impactionalGames.LudoInu
                    if( playerPieces[i].pathsParent.greenPathPoints[playerPieces[i].numberOfStepsAlreadyMoved + gm.numOfStepsToMove].playerPieces.Count != 0)
                     {
                         playerPieces[i].MoveSteps(playerPieces[i].pathsParent.greenPathPoints);
-                        gm.rolleddice.hasMoved=true;
+                        gm.rolleddice.hasMoved=false;
+                        gm.rolleddice.hasRolled=false;
+                        Debug.Log(gm.rolleddice.name + " cut a piece, rolling it again");
                         rollDice();
-                        return;
+                        return true;
                     }
                 }
 
-                if (!gm.rolleddice.hasMoved)
-                    checkIfCanFinish();
+               
             }
+
+            return false;
 
         }
 
 
-        public virtual void checkIfCanFinish()
+        public virtual bool checkIfCanFinish()
         {
             if (dice.name.Contains("green"))
             {
@@ -127,13 +140,16 @@ namespace com.impactionalGames.LudoInu
                     if (playerPieces[i].numberOfStepsAlreadyMoved + gm.numOfStepsToMove == 57)
                     {
                         playerPieces[i].MoveSteps(playerPieces[i].pathsParent.greenPathPoints);
-                        gm.rolleddice.hasMoved = true;
+                        gm.rolleddice.hasMoved = false;
+                        gm.rolleddice.hasRolled = false;
+                        return true;
                     }
                 }
 
-                if (!gm.rolleddice.hasMoved)
-                    moveTheFathestPiece();
-            }    
+                
+            }
+
+            return false;
 
         }
 
@@ -158,11 +174,13 @@ namespace com.impactionalGames.LudoInu
                 {
                     if (maxNumOfStepsAlreadyMoved == playerPieces[i].numberOfStepsAlreadyMoved)
                     {
-                        
+                        if (!gm.rolleddice.hasMoved)
+                        {
 
-                        playerPieces[i].canMove = true;
-                        gm.rolleddice.hasMoved = true;
-                        playerPieces[i].MoveSteps(playerPieces[i].pathsParent.greenPathPoints);
+                            playerPieces[i].canMove = true;
+                            gm.rolleddice.hasMoved = true;
+                            playerPieces[i].MoveSteps(playerPieces[i].pathsParent.greenPathPoints);
+                        }
 
                         //check if there is any other peice to move
 

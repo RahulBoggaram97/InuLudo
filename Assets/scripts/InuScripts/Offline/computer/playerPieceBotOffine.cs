@@ -74,6 +74,7 @@ namespace com.impactionalGames.LudoInu
                 {
                     if (isPathPointsAvailableToMove(numOfStepsToMove, numberOfStepsAlreadyMoved, pathPointsToMoveOn_))
                     {
+                        
                         transform.localScale = new Vector3(0.11f, 0.12f, 0.11f);
                         yield return new WaitForSeconds(0.025f);
 
